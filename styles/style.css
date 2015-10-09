@@ -1,0 +1,10 @@
+.sign-in-button {
+  width: 100px;
+  text-align: center;
+  border: 1px solid gray;
+  margin: 0 auto;
+}
+
+pre {
+  width: 50%;
+}
