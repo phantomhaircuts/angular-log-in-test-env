@@ -22,7 +22,7 @@ angular.module('authentication', [])
 
     // md5 Password Hash
     $scope.$watch('user.password', function() {
-      var hash = md5.createHash($scope.user.password || '');
+      hash = md5.createHash($scope.user.password || '');
       $scope.message = hash;
     });
     // clear the form
