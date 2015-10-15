@@ -29,30 +29,43 @@ angular.module('authentication', [])
   //Submit password and username
   $scope.loginCtrl.submit = function() {
 
-    // md5 Password Hash
-    $scope.$watch('loginCtrl.session.password', function() {
-      hash = md5.createHash($scope.loginCtrl.session.password || '');
-      username = $scope.loginCtrl.session.username
-      password = $scope.loginCtrl.session.password
-      $scope.loginCtrl.hash = hash;
-      xdate = $scope.date = new Date();
-      auth = md5.createHash(password+date);
-      xauthentication = username + ":" + auth;
+    var username = $scope.loginCtrl.session.username
+    var password = $scope.loginCtrl.session.password
+    var xdate = new Date();
+    var auth = md5.createHash(password+xdate);
+    var xauthentication = username + ":" + auth;
 
-      console.log(xdate+" = xdate");
-      console.log(hash+" = Hash");
-      console.log(username+" = Username");
-      console.log(password+" = Password");
-      console.log(xauthentication + "= XAUTHENTICATION");
+    console.log(xdate + " = xdate");
+    console.log(username + " = Username");
+    console.log(password + " = Password");
+    console.log(xauthentication + "= XAUTHENTICATION");
 
-      this.session = {};
+    var req = {
+      method: 'POST',
+      url: 'http://apitestv12.vagabondvending.com/DTG/users/verifylogin',
+      headers: {
+        'Content-type': 'text/plain',
+        'Accept': 'application/json',
+        'XDATE': xdate,
+        'XAUTHENTICATION': xauthentication
+      }
+    };
+
+    //HTTP request
+    $http(req)
+    .success(function (response) {
+      console.dir(response.headers);
     });
 
-    // authentication object & Post Req.
-    // $http.post('http://apitestv12.vagabondvending.com/apitest.html', { username: username, password: hash })
-    //   .success(function (response) {
-    //     callback(response);
-    //     console.log("success")
-    //   });
+
+    function callback(error, response, body) {
+      console.log("error - ", error);
+      console.log("resp - ", response);
+      console.log("body - ", body);
+      if (!error && response.statusCode == 200) {
+        var info = JSON.parse(body);
+      }
     };
+
+  };
 }]);
