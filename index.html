@@ -8,7 +8,7 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-md5/angular-md5.js"></script>
-  <script src="bower_components/ngstorage/ngstorage.js"></script>
+  <script src="bower_components/ngstorage/ngStorage.js"></script>
 
   <!-- My Scripts -->
   <script src="scripts/app.js"></script>
@@ -24,7 +24,6 @@
 
     <!-- Login Button -->
     <div class="sign-in-button" ng-click="loginCtrl.toggleForm()">Sign In</div>
-
     <!-- Login Form -->
     <form name="loginForm" ng-show="loginCtrl.formIsVisible" ng-submit="loginCtrl.submit(session)" novalidate>
       <label>Username</label>
@@ -35,12 +34,7 @@
     </form>
 
     <!-- Previews -->
-    <pre>md5 Hash Password = {{ loginCtrl.hash }}</pre>
-    <pre>Form Preview      = {{ loginCtrl.session | json}}</pre>
+    <pre>Form Preview = {{ loginCtrl.session | json}}</pre>
   </div>
-  <blockquote ng-show="review">
-    <strong>{{loginCtrl.session.password}} password</strong>
-  </blockquote>
-
 </body>
 </html>
