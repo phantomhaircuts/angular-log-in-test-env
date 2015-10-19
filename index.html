@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>Log-in</title>
+
   <!-- External Scripts -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/angular-md5/angular-md5.js"></script>
+  <script src="bower_components/ngstorage/ngstorage.js"></script>
+
   <!-- My Scripts -->
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/login.js"></script>
+
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="styles/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -33,10 +37,8 @@
     <!-- Previews -->
     <pre>md5 Hash Password = {{ loginCtrl.hash }}</pre>
     <pre>Form Preview      = {{ loginCtrl.session | json}}</pre>
-    <!-- <pre>master = {{ loginCtrl.master | json}}</pre> -->
   </div>
   <blockquote ng-show="review">
-    <!-- <strong>{{loginCtrl.session.username}} username</strong> -->
     <strong>{{loginCtrl.session.password}} password</strong>
   </blockquote>
 

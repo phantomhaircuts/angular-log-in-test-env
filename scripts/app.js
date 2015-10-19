@@ -1,3 +1,5 @@
 (function() {
-  angular.module('login', []);
+  angular.module('login', [
+    'ngstorage'
+  ]);
 })()

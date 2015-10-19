@@ -3,21 +3,26 @@ var app = angular.module("login", [
   'authentication'
 ]);
 
-angular.module('authentication', [])
-.controller("loginController", ['$scope', '$http', 'md5', function($scope, $http, md5) {
+angular.module('authentication', ['ngStorage'])
+.controller("loginController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage,
+    $sessionStorage) {
+
+  //Pass local Storage by reference to a hook under scope
+  $scope.$storage = $localStorage;
 
   // This code toggles the form on clicking the signin button
   this.formIsVisible = false
   this.toggleForm = function(){
     console.log("toggleform")
     if(this.formIsVisible){
-      this.formIsVisible = false
+      this.formIsVisible = false;
     }
     else{
-      this.formIsVisible = true
+      this.formIsVisible = true;
     }
   };
 
+  // This code will push the inner html and clear the form
   // ng-submit
   // this.session = {};
 
@@ -28,18 +33,20 @@ angular.module('authentication', [])
 
   //Submit password and username
   $scope.loginCtrl.submit = function() {
-
+    //declare variables for authentication
     var username = $scope.loginCtrl.session.username
     var password = $scope.loginCtrl.session.password
     var xdate = new Date();
-    var auth = md5.createHash(password+xdate);
-    var xauthentication = username + ":" + auth;
+    var auth = md5.createHash(password + xdate);
+    xauthentication = username + ":" + auth;
 
+    //console log the globals needed for authentication
     console.log(xdate + " = xdate");
     console.log(username + " = Username");
     console.log(password + " = Password");
     console.log(xauthentication + "= XAUTHENTICATION");
 
+    //Create the Request
     var req = {
       method: 'POST',
       url: 'http://apitestv12.vagabondvending.com/DTG/users/verifylogin',
@@ -53,19 +60,20 @@ angular.module('authentication', [])
 
     //HTTP request
     $http(req)
-    .success(function (response) {
-      console.dir(response.headers);
-    });
-
-
-    function callback(error, response, body) {
-      console.log("error - ", error);
-      console.log("resp - ", response);
-      console.log("body - ", body);
-      if (!error && response.statusCode == 200) {
-        var info = JSON.parse(body);
+    .then(function successCallback ( response, status ) {
+      console.log("You are logged in!")
+      console.log( "This is response status: "+ response.status );
+      console.dir(response);
+      //Create Session and Store XAUTHENTICATION
+      if (response.status == 200) {
+        console.log("Session Created " + xauthentication);
       }
-    };
 
+    }, function errorCallback(response) {
+      console.log("Check your Username or Password")
+      alert("failed!")
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+    });
   };
 }]);
