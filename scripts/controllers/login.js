@@ -67,9 +67,10 @@ angular.module('authentication', ['ngStorage'])
       //Create Session and Store XAUTHENTICATION
       if (response.status == 200) {
         $scope.saveData = function(){
-        sessionStorage.setItem(username, password);
+        sessionStorage.setItem('username', username);
+        sessionStorage.setItem('password', password);
         console.log('session stored')
-        console.log( 'hello ' + sessionStorage.getItem(username))
+        console.log( 'hello ' + sessionStorage.getItem('username'))
         }();
       }
 
