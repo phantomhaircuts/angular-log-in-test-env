@@ -6,9 +6,11 @@ var app = angular.module("login", [
 
 angular.module('authentication', ['ngStorage'])
 .controller("loginController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage) {
-  $scope.$storage = $localStorage
-  //Pass local Storage by reference to a hook under scope
+  var session = this;
+  session.locations = [];
 
+  //Pass local Storage by reference to a hook under scope
+  $scope.$storage = $localStorage
 
   // This code toggles the form on clicking the signin button
   this.formIsVisible = false
@@ -57,7 +59,6 @@ angular.module('authentication', ['ngStorage'])
         'XAUTHENTICATION': xauthentication
       }
     };
-
     //HTTP request
     $http(req)
     .then(function successCallback ( response ) {
@@ -67,10 +68,11 @@ angular.module('authentication', ['ngStorage'])
       //Create Session and Store XAUTHENTICATION
       if (response.status == 200) {
         $scope.saveData = function(){
-        sessionStorage.setItem('username', username);
-        sessionStorage.setItem('password', password);
-        console.log('session stored')
-        console.log( 'hello ' + sessionStorage.getItem('username'))
+          sessionStorage.setItem('username', username);
+          sessionStorage.setItem('password', password);
+          console.log('session stored')
+          console.log( 'hello ' + sessionStorage.getItem('username'))
+          getLocation()
         }();
       }
 
@@ -78,8 +80,40 @@ angular.module('authentication', ['ngStorage'])
       console.log("Check your Username or Password")
       console.log( "This is response status: "+ response.status );
       alert("failed!")
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
+      // called asynchronously if an error occurs
+      // or server returns response with an error status.
     });
-  };
+
+    // Create Function for Location List //////////////////////////////////////////////////////////////////
+    function getLocation(){
+      $scope.locations = [];
+      // Create GET Request Headers For Location List
+      var getList = {
+        method: 'GET',
+        url: 'http://apitestv12.vagabondvending.com/DTG/locations',
+        // data:'json',
+        headers: {
+          'Content-type': 'text/html',
+          'Accept': 'application/json',
+          'XDATE': xdate,
+          'XAUTHENTICATION': xauthentication
+        }
+      };
+      // Make GET Request
+      $http(getList)
+      .then(function successCallback ( response, data ) {
+        console.log("List Request has happened")
+        console.log( "List Status: "+ response.status );
+        console.dir(response);
+        //Create Session and Store XAUTHENTICATION
+        if (response.status == 200) {
+          console.log("it's alive!")
+          locData = response.data.locationsSet
+          console.log(locData);
+          Array.prototype.push.apply(session.locations, locData);
+          console.log("iterate thru:" + session.locations)
+        };
+      });
+    };
+  }
 }]);

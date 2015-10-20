@@ -20,6 +20,11 @@
 </head>
 
 <body>
+  <!-- Iterate through Locations -->
+  <div ng-repeat="location in session.locations">
+    <h1>Hello:</h1>
+    <h3>{{locData[1].location_name}}</em></h3>
+  </div>
   <div ng-controller='loginController as loginCtrl'>
 
     <!-- Login Button -->
