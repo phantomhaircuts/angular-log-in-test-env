@@ -20,12 +20,14 @@
 </head>
 
 <body>
-  <!-- Iterate through Locations -->
-  <div ng-repeat="location in session.locations">
-    <h1>Hello:</h1>
-    <h3>{{locData[1].location_name}}</em></h3>
   </div>
   <div ng-controller='loginController as loginCtrl'>
+
+  <!-- Dynamically Display Places (Loc) on Login -->
+  <div ng-repeat="place in loginCtrl.places">
+    <!-- <h1>Account: {{place.account}}</h1> -->
+    <h1><li>Location: <a href="/">{{place.location_name}}</a></li></h1>
+  </div>
 
     <!-- Login Button -->
     <div class="sign-in-button" ng-click="loginCtrl.toggleForm()">Sign In</div>

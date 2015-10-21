@@ -6,8 +6,11 @@ var app = angular.module("login", [
 
 angular.module('authentication', ['ngStorage'])
 .controller("loginController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage) {
+
+  // Assign Location to Place Property of LoginCtrl So we can use on page.
+  this.places = locations;
+  // session variable
   var session = this;
-  session.locations = [];
 
   //Pass local Storage by reference to a hook under scope
   $scope.$storage = $localStorage
@@ -110,8 +113,7 @@ angular.module('authentication', ['ngStorage'])
           console.log("it's alive!")
           locData = response.data.locationsSet
           console.log(locData);
-          Array.prototype.push.apply(session.locations, locData);
-          console.log("iterate thru:" + session.locations)
+          Array.prototype.push.apply(locations, locData);
         };
       });
     };
