@@ -27,6 +27,12 @@
   <div ng-repeat="place in loginCtrl.places">
     <!-- <h1>Account: {{place.account}}</h1> -->
     <h1><li>Location: <a href="/">{{place.location_name}}</a></li></h1>
+    <form name="editForm" novalidate>
+      <label>account</label>
+      <input type="text" name="account" value="{{place.account}}">
+      <label>Address 1</label>
+      <input type="text" name="account" value="{{place.location_address}}">
+    </form>
   </div>
 
     <!-- Login Button -->
