@@ -1,7 +1,9 @@
 var app = angular.module("login", [
   'angular-md5',
   'ngStorage',
-  'authentication'
+  'authentication',
+  'ui.router'
+  // 'ui.router.stateHelper'
 ]);
 
 angular.module('authentication', ['ngStorage'])
@@ -118,4 +120,26 @@ angular.module('authentication', ['ngStorage'])
       });
     };
   }
+}])
+.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage){
+    $scope.dataCtrl.submit = function() {
+      dataAuth = username + ":" + md5.createHash(password + dataDate + payload);
+      var dataDate = new Date();
+      var payload = "data";
+
+      console.log("pusher")
+      //http PUT Request Goes Here
+      var dataReq = {
+        method: 'PUT',
+        url: 'http://apitestv12.vagabondvending.com/DTG/locations',
+        // data:'json',
+        headers: {
+          'Content-type': 'text/html',
+          'Accept': 'application/json',
+          'XDATE': dataDate,
+          'XAUTHENTICATION': dataAuth
+        }
+      };
+      $http(dataReq)
+    }
 }]);

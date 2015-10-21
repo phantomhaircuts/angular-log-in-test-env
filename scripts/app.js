@@ -1,5 +1,5 @@
 
 (function() {
   locations = [];
-  angular.module('login', []);
+  angular.module('login', ['ui.router']);
 })()

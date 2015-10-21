@@ -2,11 +2,12 @@
 <html lang="en" ng-app='login'>
 <head>
   <meta charset="UTF-8">
-  <title>Log-in</title>
+  <title>Onboarding Tool</title>
 
   <!-- External Scripts -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/angular-md5/angular-md5.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
 
@@ -20,34 +21,37 @@
 </head>
 
 <body>
-  </div>
-  <div ng-controller='loginController as loginCtrl'>
+</div>
+<div ng-controller='loginController as loginCtrl'>
 
   <!-- Dynamically Display Places (Loc) on Login -->
   <div ng-repeat="place in loginCtrl.places">
     <!-- <h1>Account: {{place.account}}</h1> -->
     <h1><li>Location: <a href="/">{{place.location_name}}</a></li></h1>
-    <form name="editForm" novalidate>
+    <form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate>
       <label>account</label>
-      <input type="text" name="account" value="{{place.account}}">
+      <input type="text" name="account" placeholder="account" value="{{place.account}}">
       <label>Address 1</label>
-      <input type="text" name="account" value="{{place.location_address}}">
+      <input type="text" name="address" placeholder="address" value="{{place.location_address}}">
+      <label>City</label>
+      <input type="text" name="city" placeholder="washington" value="{{place.location_city}}">
+      <input type="submit" class="btn btn-primary" value="submit" />
     </form>
   </div>
 
-    <!-- Login Button -->
-    <div class="sign-in-button" ng-click="loginCtrl.toggleForm()">Sign In</div>
-    <!-- Login Form -->
-    <form name="loginForm" ng-show="loginCtrl.formIsVisible" ng-submit="loginCtrl.submit(session)" novalidate>
-      <label>Username</label>
-      <input type="text" name="username" ng-model="loginCtrl.session.username" required><br>
-      <label>Password</label>
-      <input type="text" name="password" ng-model="loginCtrl.session.password" required>
-      <input type="submit" class="btn btn-primary" value="Login" />
-    </form>
+  <!-- Login Button -->
+  <div class="sign-in-button" ng-click="loginCtrl.toggleForm()">Sign In</div>
+  <!-- Login Form -->
+  <form name="loginForm" ng-show="loginCtrl.formIsVisible" ng-submit="loginCtrl.submit(session)" novalidate>
+    <label>Username</label>
+    <input type="text" name="username" ng-model="loginCtrl.session.username" required><br>
+    <label>Password</label>
+    <input type="text" name="password" ng-model="loginCtrl.session.password" required>
+    <input type="submit" class="btn btn-primary" value="Login" />
+  </form>
 
-    <!-- Previews -->
-    <pre>Form Preview = {{ loginCtrl.session | json}}</pre>
-  </div>
+  <!-- Previews -->
+  <pre>Form Preview = {{ loginCtrl.session | json}}</pre>
+</div>
 </body>
 </html>
