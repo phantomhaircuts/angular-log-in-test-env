@@ -1,14 +1,59 @@
-var app = angular.module("login", [
+var app = angular.module("onboardingApp", [
   'angular-md5',
   'ngStorage',
   'authentication',
-  'ui.router'
-  // 'ui.router.stateHelper'
+  'ui.router',
 ]);
 
-angular.module('authentication', ['ngStorage'])
-.controller("loginController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage) {
+// UI ROUTER CODE =============================================
+app.config(function($stateProvider, $urlRouterProvider) {
 
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider
+
+        // HOME STATES ========================================
+        .state('home', {
+            url: '/home',
+            templateUrl: 'views/login.html'
+            // controller: 'loginController'
+        })
+        .state('locationState', {
+            url: '/locations',
+            templateUrl: 'views/locations.html'
+            // controller: 'loginController'
+        })
+        .state('data', {
+            url: '/data',
+            templateUrl: 'views/data.html'
+        })
+
+        // NESTED VIEWS AND STATES =================================
+        // $urlRouterProvider.otherwise('/address')
+        .state('data.address', {
+             url: '/address',
+             templateUrl: 'views/input/address.html'
+         })
+         .state('data.detail', {
+              url: '/detail',
+              templateUrl: 'views/input/detail.html'
+          })
+          .state('data.par', {
+               url: '/par',
+               templateUrl: 'views/input/par.html'
+           })
+           .state('data.products', {
+                url: '/products',
+                templateUrl: 'views/input/products.html'
+            })
+
+});
+// END Router ========================================================
+
+//LOCATIONS OBJECT
+locations = []
+angular.module('authentication', ['ngStorage'])
+.controller("loginController", ['$scope', '$http', 'md5', '$state', function($scope, $http, md5, $localStorage, $sessionStorage, $state, $stateProvider, $urlRouterProvider) {
   // Assign Location to Place Property of LoginCtrl So we can use on page.
   this.places = locations;
   // session variable
@@ -77,7 +122,9 @@ angular.module('authentication', ['ngStorage'])
           sessionStorage.setItem('password', password);
           console.log('session stored')
           console.log( 'hello ' + sessionStorage.getItem('username'))
-          getLocation()
+          $scope.show=false;
+          getLocation();
+
         }();
       }
 

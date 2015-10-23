@@ -1,0 +1,12 @@
+<blockquote>
+  <p>Fill the fields <em>OR</em> add a picture of the corresponding plates/stickers.</p>
+</blockquote>
+<form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate>
+  <label>Make</label>
+  <input type="text" name="make" placeholder="make" value="{{place.account}}">
+  <label>Model</label>
+  <input type="text" name="model" placeholder="model" value="{{place.location_address}}">
+  <label>Firmware</label>
+  <input type="text" name="firmware" placeholder="firmware" value="{{place.location_address2}}">
+  <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.par" />
+</form>

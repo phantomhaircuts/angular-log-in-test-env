@@ -1,5 +1,17 @@
+'use strict';
 
 (function() {
-  locations = [];
-  angular.module('login', ['ui.router']);
+  var app = angular.module('onboardingApp', [
+    'angular-md5',
+    'ngStorage',
+    'authentication',
+    'ui.router',
+    'ngRoute',
+    'ngResource',
+    'onboardingControllers',
+    'onboardingRouter',
+    'onboardingServices',
+    'onboardingLogin',
+    'onboardingDirectives'
+  ]);
 })()

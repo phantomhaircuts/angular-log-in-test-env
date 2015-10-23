@@ -1,0 +1,16 @@
+<h1 class="heading">Par</h1>
+<blockquote>
+    <p>Fill in the planogram's par. Separate coils by a comma, one tray per line.</p>
+  </blockquote>
+<form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate>
+  <label>Par</label>
+  <textarea rows="5" ng-model="setupctrl.formData.pars" class="form-control"
+  placeholder=
+  " 8,8,8,8
+  8,10,12,8
+  10,10,8,8,8,10
+  6,6,6,6
+  4,4,7,8"
+  title="Address1"></textarea>
+  <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.products"/>
+</form>
