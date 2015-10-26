@@ -3,9 +3,9 @@
   <p>Fill the fields <em>OR</em> add a picture of the corresponding plates/stickers.</p>
 </blockquote>
   <label>Make</label>
-  <input type="text" ng-model="formData.make" name="make" placeholder="make" value="{{place.account}}">
+  <input type="text" ng-model="formData.location_make" name="make" placeholder="make" value="{{place.account}}">
   <label>Model</label>
-  <input type="text" ng-model="formData.model" name="model" placeholder="model" value="{{place.location_address}}">
+  <input type="text" ng-model="formData.location_model" name="model" placeholder="model" value="{{place.location_address}}">
   <label>Firmware</label>
   <input type="text" ng-model="formData.firmware" name="firmware" placeholder="firmware" value="{{place.location_address2}}">
   <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.par" />

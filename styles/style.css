@@ -34,7 +34,7 @@ body {
 
 .header {
 	margin: 0 auto;
-	width: 1550px;
+	width: 100%;
 	overflow: hidden;
 	height: 65px;
 	background-color: #D9D9D9;
@@ -143,10 +143,16 @@ input[type=submit] {
 	background-color: #DF691A
 }
 
+.loginPage form {
+	margin-top: 100px;
+	height: 200px;
+}
+
 form {
 	color: #fff;
 	margin: 0 auto;
 	width: 50%;
+	height: 500px;
 	background-color: #4E5D6C;
 	padding: 10px;
 }

@@ -12,6 +12,7 @@
     'onboardingRouter',
     'onboardingServices',
     'onboardingLogin',
-    'onboardingDirectives'
+    'onboardingDirectives',
+    'ngAnimate'
   ]);
 })()

@@ -3,6 +3,7 @@ var app = angular.module("onboardingApp", [
   'ngStorage',
   'authentication',
   'ui.router',
+  'ngAnimate'
 ]);
 
 // UI ROUTER CODE =============================================
@@ -171,7 +172,7 @@ angular.module('authentication', ['ngStorage'])
   }
 }])
 
-.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage){
+.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate){
   // this.loacation = location.get({id: place.id})
   // we will store all of our form data in this object
   $scope.formData = {};
@@ -186,10 +187,10 @@ angular.module('authentication', ['ngStorage'])
     dataAuth = username + ":" + md5.createHash(password + dataDate + payload);
     var dataReq = {
       method: 'PUT',
-      url: 'http://apiv12test.vagabondvending.com/DTG/location/1610',
-      // data:'json',
+      url: 'http://apitestv12.vagabondvending.com/DTG/locations/1610',
+      data: $scope.formData,
       headers: {
-        'Content-type': 'text/html',
+        'Content-type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json',
         'XDATE': dataDate,
         'XAUTHENTICATION': dataAuth
