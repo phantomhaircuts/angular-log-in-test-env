@@ -1,11 +1,13 @@
 
 <div ng-controller='loginController as loginCtrl'>
   <!-- Insert List HTML below this line if it causes problems -->
-  <div ng-repeat="place in loginCtrl.places" class="spots">
-    <a href="/" ui-sref='data.address'><h2>{{place.location_name}}</h2></a>
+  <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">
+    <a ui-sref='data.address({ id: place.id })'><h2>{{place.id}} {{place.location_name}}</h2></a>
   </div>
+  <!-- This is the Login Form for the Onboarding Tool -->
   <div ng-hide='show'>
     <h1 class="heading">Welcome to the Vagabond Onboarding Tool</h1>
+    <h4 class="text-center">Login using your Vagabond account:</h4>
     <form name="loginForm" ng-submit="loginCtrl.submit(session)" novalidate>
       <label>Username</label>
       <input type="text" name="username" ng-model="loginCtrl.session.username" required><br>

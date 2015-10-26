@@ -5,7 +5,12 @@ body {
 	/*font-size: 15px;*/
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	min-height: 900px;
 	/*font-weight: lighter;*/
+}
+
+.text-center {
+	text-align: center;
 }
 
 /*NAVIGATION STYLES */
@@ -68,8 +73,9 @@ pre {
 #status-buttons {
 	background-color: #4E5D6C;
 	margin: 0 auto;
-	width: 40%;
+	width: 50%;
 	padding: 15px;
+	border-bottom: 1px solid #fff;
 }
 
 #status-buttons a {
@@ -140,7 +146,7 @@ input[type=submit] {
 form {
 	color: #fff;
 	margin: 0 auto;
-	width: 30%;
+	width: 50%;
 	background-color: #4E5D6C;
 	padding: 10px;
 }
@@ -165,5 +171,5 @@ footer {
 	position: fixed;
 	display: block;
 	border-top: 1px solid #fff;
-	/*background-color: #383826;*/
+	background-color: #4E5D6C;
 }

@@ -8,50 +8,52 @@ var app = angular.module("onboardingApp", [
 // UI ROUTER CODE =============================================
 app.config(function($stateProvider, $urlRouterProvider) {
 
-    $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/home');
 
-    $stateProvider
+  $stateProvider
 
-        // HOME STATES ========================================
-        .state('home', {
-            url: '/home',
-            templateUrl: 'views/login.html'
-            // controller: 'loginController'
-        })
-        .state('locationState', {
-            url: '/locations',
-            templateUrl: 'views/locations.html'
-            // controller: 'loginController'
-        })
-        .state('data', {
-            url: '/data',
-            templateUrl: 'views/data.html'
-        })
+  // HOME STATES ========================================
+  .state('home', {
+    url: '/home',
+    templateUrl: 'views/login.html'
+    // controller: 'loginController'
+  })
+  // .state('locationState', {
+  //   url: '/locations',
+  //   templateUrl: 'views/locations.html'
+  //   // controller: 'loginController'
+  // })
 
-        // NESTED VIEWS AND STATES =================================
-        // $urlRouterProvider.otherwise('/address')
-        .state('data.address', {
-             url: '/address',
-             templateUrl: 'views/input/address.html'
-         })
-         .state('data.detail', {
-              url: '/detail',
-              templateUrl: 'views/input/detail.html'
-          })
-          .state('data.par', {
-               url: '/par',
-               templateUrl: 'views/input/par.html'
-           })
-           .state('data.products', {
-                url: '/products',
-                templateUrl: 'views/input/products.html'
-            })
+  .state('data', {
+    url: '/data',
+    templateUrl: 'views/data.html',
+    // controller: 'dataController'
+  })
 
+  // NESTED VIEWS AND STATES =================================
+  // $urlRouterProvider.otherwise('/address')
+  .state('data.address', {
+    url: '/address/:id',
+    templateUrl: 'views/input/address.html'
+  })
+  .state('data.detail', {
+    url: '/detail',
+    templateUrl: 'views/input/detail.html'
+  })
+  .state('data.par', {
+    url: '/par',
+    templateUrl: 'views/input/par.html'
+  })
+  .state('data.products', {
+    url: '/products',
+    templateUrl: 'views/input/products.html'
+  })
 });
 // END Router ========================================================
 
 //LOCATIONS OBJECT
 locations = []
+payload = []
 angular.module('authentication', ['ngStorage'])
 .controller("loginController", ['$scope', '$http', 'md5', '$state', function($scope, $http, md5, $localStorage, $sessionStorage, $state, $stateProvider, $urlRouterProvider) {
   // Assign Location to Place Property of LoginCtrl So we can use on page.
@@ -168,25 +170,31 @@ angular.module('authentication', ['ngStorage'])
     };
   }
 }])
-.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage){
-    $scope.dataCtrl.submit = function() {
-      dataAuth = username + ":" + md5.createHash(password + dataDate + payload);
-      var dataDate = new Date();
-      var payload = "data";
 
-      console.log("pusher")
-      //http PUT Request Goes Here
-      var dataReq = {
-        method: 'PUT',
-        url: 'http://apitestv12.vagabondvending.com/DTG/locations',
-        // data:'json',
-        headers: {
-          'Content-type': 'text/html',
-          'Accept': 'application/json',
-          'XDATE': dataDate,
-          'XAUTHENTICATION': dataAuth
-        }
-      };
-      $http(dataReq)
-    }
+.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage){
+  // this.loacation = location.get({id: place.id})
+  // we will store all of our form data in this object
+  $scope.formData = {};
+  $scope.locations = $scope.locations;
+  this.places = locations;
+
+  // function to process the form
+  $scope.processForm = function() {
+    alert('submit!');
+    dataDate = new Date();
+    payload = $scope.formData;
+    dataAuth = username + ":" + md5.createHash(password + dataDate + payload);
+    var dataReq = {
+      method: 'PUT',
+      url: 'http://apiv12test.vagabondvending.com/DTG/location/1610',
+      // data:'json',
+      headers: {
+        'Content-type': 'text/html',
+        'Accept': 'application/json',
+        'XDATE': dataDate,
+        'XAUTHENTICATION': dataAuth
+      }
+    };
+    $http(dataReq)
+  };
 }]);

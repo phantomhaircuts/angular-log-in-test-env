@@ -1,12 +1,10 @@
-placeControllers.controller('placeController', ['place', function(Data) {
-  this.grumbles = Grumble.query();
-}]);
+.controller('formController', function($scope) {
 
-placeControllers.controller('editPlaceController', ["$location","$routeParams",'place', function($location, $routeParams, place){
-  this.data = Data.get({id: $routeParams.id})
-  this.update = function(){
-    this.place.$update({id: this.place.id});
-    $location.path("/place/" + this.place.id)
-  }
-}])
-})();
+    // we will store all of our form data in this object
+    $scope.formData = {};
+
+    // function to process the form
+    $scope.processForm = function() {
+        alert('submit!');
+    };
+});

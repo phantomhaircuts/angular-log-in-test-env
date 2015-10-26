@@ -1,4 +1,4 @@
-<div ng-controller='loginController as loginCtrl'>
+<div ng-controller='dataController as dataCtrl'>
   <div id="status-buttons" class="text-center">
     <h2>Onboarding Tool</h2>
     <a ui-sref-active="active" ui-sref="data.address"><span>1</span> Location</a>
@@ -6,5 +6,10 @@
     <a ui-sref-active="active" ui-sref="data.par"><span>3</span> Par</a>
     <a ui-sref-active="active" ui-sref="data.products"><span>4</span> Products</a>
   </div>
-  <div id="data-views" ui-view></div>
+  <form id="data-form" ng-submit="processForm()">
+    <div id="data-views" ui-view></div>
+  </form>
+  <pre>
+    {{ formData }}
+  </pre>
 </div>

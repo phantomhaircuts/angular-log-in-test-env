@@ -1,19 +1,16 @@
-<blockquote>
+<div>
+<blockquote class="text-center">
   <p>Fill in or correct the machine's address information.</p>
 </blockquote>
-<form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate>
-  <label>account</label>
-  <input type="text" name="account" placeholder="account" value="{{place.account}}">
   <label>Address 1</label>
-  <input type="text" name="address" placeholder="address" value="{{place.location_address}}">
+  <input type="text" ng-model="formData.address1" name="address" placeholder="address" value="{{place.location_address}}">
   <label>Address 2</label>
-  <input type="text" name="address" placeholder="address" value="{{place.location_address2}}">
+  <input type="text" ng-model="formData.address2" name="address" placeholder="address" value="{{place.location_address2}}">
   <label>City</label>
-  <input type="text" name="city" placeholder="city" value="{{place.location_city}}">
+  <input type="text" ng-model="formData.city" name="city" placeholder="city" value="{{place.location_city}}">
   <label>State</label>
-  <input type="text" name="state" placeholder="state" value="{{place.location_state}}">
+  <input type="text" ng-model="formData.state" name="state" placeholder="state" value="{{place.location_state}}">
   <label>Zip</label>
-  <input type="text" name="zip" placeholder="zip" value="{{place.location_zip}}">
+  <input type="text" ng-model="formData.zip" name="zip" placeholder="zip" value="{{place.location_zip}}">
   <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.detail">
-</form>
-<!-- ng-repeat="place in loginCtrl.places" -->
+</div>

@@ -1,7 +1,13 @@
-<blockquote>
-    <p>Add a picture of the front of the machine to provide product placement and pricing.</p>
-  </blockquote>
-<form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate>
-
-  <input type="submit" class="btn btn-primary" value="Done" />
-</form>
+<div>
+<blockquote class="text-center">
+  <p>Add a picture of the front of the machine to provide product placement and pricing.</p>
+</blockquote>
+<!-- <form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate> -->
+<label class="text-center">
+  <span class="glyphicon glyphicon-camera"></span>
+  Take a picture
+</label>
+  <input ng-model="formData.productsphoto" class="input-sm text-center" type="file" accept="image/*" capture="camera">
+</span>
+<input type="submit" class="btn btn-primary" value="Done" />
+</div>
