@@ -66,18 +66,6 @@ angular.module('authentication', ['ngStorage'])
   //Pass local Storage by reference to a hook under scope
   $scope.$storage = $localStorage
 
-  // This code toggles the form on clicking the signin button
-  this.formIsVisible = false
-  this.toggleForm = function(){
-    console.log("toggleform")
-    if(this.formIsVisible){
-      this.formIsVisible = false;
-    }
-    else{
-      this.formIsVisible = true;
-    }
-  };
-
   // This code will push the inner html and clear the form
   // ng-submit
   // this.session = {};
@@ -135,7 +123,7 @@ angular.module('authentication', ['ngStorage'])
     }, function errorCallback(response) {
       console.log("Check your Username or Password")
       console.log( "This is response status: "+ response.status );
-      alert("failed!")
+      alert("Please Check your Username or Password")
       // called asynchronously if an error occurs
       // or server returns response with an error status.
     });
@@ -173,23 +161,25 @@ angular.module('authentication', ['ngStorage'])
   }
 }])
 
-.controller("dataController", ['$scope', '$http', 'md5', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate){
+.controller("dataController", ['$scope', '$http', 'md5', '$location', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location){
+  // this.place = locations.get({id: locations.id})
+
   // this.loacation = location.get({id: place.id})
   // we will store all of our form data in this object
   $scope.formData = {};
   $scope.locations = $scope.locations;
   this.places = locations;
-
   // function to process the form
   $scope.processForm = function() {
     alert('submit!');
+    locId = 1610;
     dataDate = new Date();
     pay = "input="
     load = angular.toJson($scope.formData);
     dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
     var dataReq = {
       method: 'PUT',
-      url: 'http://apitestv12.vagabondvending.com/DTG/locations/1610',
+      url: 'http://apitestv12.vagabondvending.com/DTG/locations/'+ locId,
       data: pay + load,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
