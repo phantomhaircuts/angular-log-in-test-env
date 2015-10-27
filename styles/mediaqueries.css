@@ -1,5 +1,4 @@
 /* MEDIA QUERIES */
-/*MEDIA QUERIES*/
 
 @media screen and (max-width: 1500px) { /*TYPICAL LAPTOP ADJUSTMENTS*/
   form, #status-buttons {
@@ -23,7 +22,9 @@
   .heading {
     display: none;
   }
-
+  footer {
+    background-color: #4E5D6C;
+  }
 
 
   form, #status-buttons, .loginPage form {

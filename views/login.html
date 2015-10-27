@@ -5,7 +5,7 @@
     <a ui-sref='data.address({ id: place.id })'><h2>{{place.id}} {{place.location_name}}</h2></a>
   </div>
   <!-- This is the Login Form for the Onboarding Tool -->
-  <div class="loginPage" ng-hide='show'>
+  <div class="loginPage" ng-hide='loggedIn'>
     <h1 class="heading">Welcome to the Vagabond Onboarding Tool</h1>
     <h4 class="text-center">Login using your Vagabond account:</h4>
     <form name="loginForm" ng-submit="loginCtrl.submit(session)" novalidate>

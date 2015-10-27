@@ -61,7 +61,8 @@ angular.module('authentication', ['ngStorage'])
   this.places = locations;
   // session variable
   var session = this;
-
+  //ng-hide var
+  $scope.loggedIn = false;
   //Pass local Storage by reference to a hook under scope
   $scope.$storage = $localStorage
 
@@ -120,6 +121,7 @@ angular.module('authentication', ['ngStorage'])
       console.dir(response);
       //Create Session and Store XAUTHENTICATION
       if (response.status == 200) {
+        $scope.loggedIn = true;
         $scope.saveData = function(){
           sessionStorage.setItem('username', username);
           sessionStorage.setItem('password', password);
@@ -127,7 +129,6 @@ angular.module('authentication', ['ngStorage'])
           console.log( 'hello ' + sessionStorage.getItem('username'))
           $scope.show=false;
           getLocation();
-
         }();
       }
 
