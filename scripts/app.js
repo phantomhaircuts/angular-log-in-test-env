@@ -13,6 +13,7 @@
     'onboardingServices',
     'onboardingLogin',
     'onboardingDirectives',
-    'ngAnimate'
+    'ngAnimate',
+    'ngResource'
   ]);
 })()

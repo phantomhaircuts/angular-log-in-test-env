@@ -3,7 +3,8 @@ var app = angular.module("onboardingApp", [
   'ngStorage',
   'authentication',
   'ui.router',
-  'ngAnimate'
+  'ngAnimate',
+  'ngResource'
 ]);
 
 // UI ROUTER CODE =============================================
