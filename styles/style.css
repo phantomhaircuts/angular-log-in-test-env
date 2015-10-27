@@ -37,8 +37,22 @@ body {
 	width: 100%;
 	overflow: hidden;
 	height: 65px;
-	background-color: #D9D9D9;
+	background-color: #1E1E1E;
 	border-bottom: 1px solid #fff;
+}
+
+.header-link, .header-link a, .header-link a:visited {
+	color: #fff;
+	text-align: left;
+	margin: 20px;
+	font-size: 1.2em;
+	font-weight: lighter;
+}
+
+.header-link a:hover {
+	color: #fff;
+	border-bottom: 5px solid #DF691A;
+	text-decoration: none;
 }
 
 /*BODY STYLES*/

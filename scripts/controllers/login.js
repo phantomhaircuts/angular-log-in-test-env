@@ -183,12 +183,13 @@ angular.module('authentication', ['ngStorage'])
   $scope.processForm = function() {
     alert('submit!');
     dataDate = new Date();
-    payload = $scope.formData;
-    dataAuth = username + ":" + md5.createHash(password + dataDate + payload);
+    pay = "input="
+    load = angular.toJson($scope.formData);
+    dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
     var dataReq = {
       method: 'PUT',
       url: 'http://apitestv12.vagabondvending.com/DTG/locations/1610',
-      data: $scope.formData,
+      data: pay + load,
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
         'Accept': 'application/json',
