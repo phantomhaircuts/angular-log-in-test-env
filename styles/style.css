@@ -41,7 +41,7 @@ body {
 	border-bottom: 1px solid #fff;
 }
 
-.header-link, .header-link a, .header-link a:visited {
+.header-link, .header-link a, .header-link a:visited, .header-link a:checked {
 	color: #fff;
 	text-align: left;
 	margin: 20px;
@@ -81,6 +81,10 @@ pre {
 }
 .spots:nth-child(odd) {
 	background-color: #00C479;
+}
+
+.h2, h2 {
+	margin: 0 !important;
 }
 
 /* numbered buttons */
@@ -160,6 +164,7 @@ input[type=submit] {
 .loginPage form {
 	margin-top: 100px;
 	height: 200px;
+	width: 40%;
 }
 
 form {
@@ -186,7 +191,7 @@ input[type=text] {
 footer {
 	width: 100%;
 	bottom: 0;
-	height: 80px;
+	height: 60px;
 	margin: 0 auto;
 	position: fixed;
 	display: block;

@@ -1,1 +1,53 @@
 /* MEDIA QUERIES */
+/*MEDIA QUERIES*/
+
+@media screen and (max-width: 1500px) { /*TYPICAL LAPTOP ADJUSTMENTS*/
+  form, #status-buttons {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1210px) { /*TYPICAL LANDSCAPE TABLET ADJUSTMENTS*/
+  form, #status-buttons, .loginPage form  {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 900px) { /*SMALLER TABLET/PORTRAIT TABLET ADJUSTMENTS*/
+  form, #status-buttons, .loginPage form  {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 500px) { /*TYPICAL MOBILE ADJUSTMENTS*/
+  .heading {
+    display: none;
+  }
+
+
+
+  form, #status-buttons, .loginPage form {
+    width: 100%;
+  }
+
+  form {
+    height: 90vh;
+  }
+
+  .loginPage form {
+    height: 250px;
+    margin: 0;
+  }
+
+  .header-link, .header-link a, .header-link a:visited {
+    margin: 10px;
+  }
+  h2 {
+    font-size: 20px!important;
+    margin: 0!important
+  }
+
+  .header-wrapper {
+    margin: 0;
+  }
+}
