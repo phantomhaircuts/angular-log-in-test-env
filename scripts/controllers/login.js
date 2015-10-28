@@ -20,6 +20,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'views/login.html'
     // controller: 'loginController'
   })
+
   // .state('locationState', {
   //   url: '/locations',
   //   templateUrl: 'views/locations.html'
@@ -27,15 +28,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
   // })
 
   .state('data', {
-    url: '/data',
+    url: '/data/:id',
     templateUrl: 'views/data.html',
-    // controller: 'dataController'
+    controller: function($scope, $stateParams) {
+            // get the id
+            $scope.id = $stateParams.id;
+        }
   })
 
   // NESTED VIEWS AND STATES =================================
   // $urlRouterProvider.otherwise('/address')
   .state('data.address', {
-    url: '/address/:id',
+    url: '/address',
     templateUrl: 'views/input/address.html'
   })
   .state('data.detail', {
@@ -60,10 +64,13 @@ angular.module('authentication', ['ngStorage'])
 .controller("loginController", ['$scope', '$http', 'md5', '$state', function($scope, $http, md5, $localStorage, $sessionStorage, $state, $stateProvider, $urlRouterProvider) {
   // Assign Location to Place Property of LoginCtrl So we can use on page.
   this.places = locations;
+
   // session variable
   var session = this;
+
   //ng-hide var
   $scope.loggedIn = false;
+
   //Pass local Storage by reference to a hook under scope
   $scope.$storage = $localStorage
 
@@ -75,7 +82,6 @@ angular.module('authentication', ['ngStorage'])
   //   user.session.push(this.session)
   //   this.session = {}
   // };
-
   //Submit password and username
   $scope.loginCtrl.submit = function() {
     //declare variables for authentication
@@ -117,7 +123,7 @@ angular.module('authentication', ['ngStorage'])
           console.log('session stored')
           console.log( 'hello ' + sessionStorage.getItem('username'))
           $scope.show=false;
-          getLocation();
+          getLocation()
         }();
       }
 
@@ -162,7 +168,7 @@ angular.module('authentication', ['ngStorage'])
   }
 }])
 
-.controller("dataController", ['$scope', '$http', 'md5', '$location', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location){
+.controller("dataController", ['$scope', '$http', 'md5', '$location', '$state', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location, $state, $stateProvider, $urlRouterProvider, $stateParams){
   // this.place = locations.get({id: locations.id})
 
   // this.loacation = location.get({id: place.id})
@@ -171,9 +177,10 @@ angular.module('authentication', ['ngStorage'])
   $scope.locations = $scope.locations;
   this.places = locations;
   // function to process the form
-  $scope.processForm = function() {
+  $scope.processForm = function($state, $stateParams) {
+    console.log("state params" + $stateParams)
     alert('submit!');
-    locId = 1610;
+    locId = $scope.id;
     dataDate = new Date();
     pay = "input="
     load = angular.toJson($scope.formData);
