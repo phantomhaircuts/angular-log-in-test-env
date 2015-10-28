@@ -18,7 +18,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('home', {
     url: '/home',
     templateUrl: 'views/login.html'
-    // controller: 'loginController'
   })
 
   // .state('locationState', {
@@ -42,14 +41,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/address',
     templateUrl: 'views/input/address.html'
   })
+
   .state('data.detail', {
     url: '/detail',
     templateUrl: 'views/input/detail.html'
   })
+
   .state('data.par', {
     url: '/par',
     templateUrl: 'views/input/par.html'
   })
+
   .state('data.products', {
     url: '/products',
     templateUrl: 'views/input/products.html'
@@ -168,19 +170,44 @@ angular.module('authentication', ['ngStorage'])
   }
 }])
 
+// START DATE CONTROLLER========================================================
 .controller("dataController", ['$scope', '$http', 'md5', '$location', '$state', function($scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location, $state, $stateProvider, $urlRouterProvider, $stateParams){
+  locId = $scope.id;
+  var locdate = new Date();
+  var xauthentication = username + ":" + md5.createHash(password + locdate);
+
+  // HEADERS FOR INDIVIDUAL LOCATION
+  var getLoc = {
+    method: 'GET',
+    url: 'http://apitestv12.vagabondvending.com/DTG/locations/' + locId,
+    // data:'json',
+    headers: {
+      'Content-type': 'text/html',
+      'Accept': 'application/json',
+      'XDATE': locdate,
+      'XAUTHENTICATION': xauthentication
+    }
+  };
+  // GET ID Location Request
+  $http(getLoc)
+  .then(function successCallback ( response, data ) {
+    console.log( "Individual Location Status: "+ response.status );
+    console.dir(response);
+    //Create Session and Store XAUTHENTICATION
+    if (response.status == 200) {
+    placeId = response.data.locations
+    this.spot = placeId;
+    };
+  });
+
   // this.place = locations.get({id: locations.id})
 
   // this.loacation = location.get({id: place.id})
   // we will store all of our form data in this object
   $scope.formData = {};
   $scope.locations = $scope.locations;
-  this.places = locations;
   // function to process the form
   $scope.processForm = function($state, $stateParams) {
-    console.log("state params" + $stateParams)
-    alert('submit!');
-    locId = $scope.id;
     dataDate = new Date();
     pay = "input="
     load = angular.toJson($scope.formData);
@@ -197,5 +224,15 @@ angular.module('authentication', ['ngStorage'])
       }
     };
     $http(dataReq)
+    .then(function successCallback ( response, data ) {
+      console.log("The Data is being submitted")
+      //Create Session and Store XAUTHENTICATION
+      if (response.status == 200) {
+        console.log("Submission was Successful!!!!")
+        locData = response.data.locationsSet
+        alert('submit!');
+        Array.prototype.push.apply(locations, locData);
+      };
+    });
   };
 }]);
