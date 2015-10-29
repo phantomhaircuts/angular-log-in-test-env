@@ -8,13 +8,13 @@
       <span class="glyphicon glyphicon-camera"></span>
       Take a picture
       <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
-      <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
+      <input type="file" capture="camera" accept="image/*" id="file" name="file" onchange="angular.element(this).scope().uploadFile(this.file)">
     </span>
-    <span class="btn btn-primary fileinput-button">
+    <!-- <span class="btn btn-primary fileinput-button">
       <span class="glyphicon glyphicon-camera"></span>
       Take another picture
       <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera">
-    </span>
+    </span> -->
 
     <div>
       <input type="submit" class="btn btn-primary" value="Done" />
