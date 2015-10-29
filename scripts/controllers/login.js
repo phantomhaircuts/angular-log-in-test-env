@@ -234,5 +234,28 @@ angular.module('authentication', ['ngStorage'])
         Array.prototype.push.apply(locations, locData);
       };
     });
+    // FRESH DESK FOR HANDLING PHOTOS AND CREATING TICKETS
+    var apiKey = 'Duw1oQU6YazvCtT5cynJ';
+    var freshData = {
+      'helpdesk_ticket[email]': 'example@example.com',
+      'helpdesk_ticket[subject]': 'Ticket title',
+      'helpdesk_ticket[description]': 'Ticket description',
+      'helpdesk_ticket[attachments][][resource]': {file: 'logo.png', content_type: 'image/png'}
+    };
+    var freshEnd = 'vagabondvending.freshdesk.com';
+    var freshReq = {
+      method: 'POST',
+      url: "https://" + freshEnd + "/helpdesk/tickets.json",
+      data: freshData,
+      headers: {}
+    }
+
+    $http(freshReq)
+    .then(function freshCallback ( response, data ) {
+      console.log("fresh is being submitted")
+      if (response.status == 200) {
+        console.log("fresh was Successful!")
+      };
+    });
   };
 }]);

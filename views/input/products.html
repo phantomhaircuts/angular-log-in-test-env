@@ -7,8 +7,15 @@
     <span class="btn btn-primary fileinput-button">
       <span class="glyphicon glyphicon-camera"></span>
       Take a picture
+      <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
+      <input type="file" capture="camera" accept="image/*" id="cameraInput" name="cameraInput">
+    </span>
+    <span class="btn btn-primary fileinput-button">
+      <span class="glyphicon glyphicon-camera"></span>
+      Take another picture
       <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera">
     </span>
+
     <div>
       <input type="submit" class="btn btn-primary" value="Done" />
     </div>
