@@ -1,15 +1,26 @@
-onboardingApp.directive('fileModel', ['$parse', function($parse){
+//FILE UPLOAD DIRECTIVE =======================================
+app.directive ('fileInput', ['$parse', function($parse){
   return {
-    restict: 'A',
-    link: function(scope, element, attrs){
-      var model = $parse(attrs.fileModel);
-      var modelSetter = model.assign;
-
-      element.bind('change', function(){
-        scope.$apply(function(){
-          modelSetter(scope, element[0].files[0]);
-        })
+    restrict: 'A',
+    link: function(scope, elm, attrs){
+      elm.bind('change', function(){
+        $parse(attrs.fileInput)
+        .assign(scope,elm[0].files)
+        scope.$apply();
       })
     }
   }
-}])
+}]);
+
+app.directive ('fileInputTwo', ['$parse', function($parse){
+  return {
+    restrict: 'A',
+    link: function(scope, elm, attrs){
+      elm.bind('change', function(){
+        $parse(attrs.fileInput)
+        .assign(scope,elm[1].files)
+        scope.$apply();
+      })
+    }
+  }
+}]);

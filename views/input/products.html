@@ -6,16 +6,25 @@
   <label class="text-center">
     <span class="btn btn-primary fileinput-button">
       <span class="glyphicon glyphicon-camera"></span>
-      Take a picture
+      Take a Photo
       <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
-      <input type="file" capture="camera" accept="image/*" id="file" name="file" onchange="angular.element(this).scope().uploadFile(this.file)">
+      <input type="file"
+        file-input = "files"
+        onchange="angular.element(this).scope().filesChanged(this)"
+        multiple />
     </span>
-    <!-- <span class="btn btn-primary fileinput-button">
-      <span class="glyphicon glyphicon-camera"></span>
-      Take another picture
-      <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera">
-    </span> -->
 
+    <span class="btn btn-primary fileinput-button">
+      <span class="glyphicon glyphicon-camera"></span>
+      Take another Photo
+      <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
+      <input type="file"
+        file-input = "files"
+        onchange="angular.element(this).scope().filesChanged(this)"
+        multiple />
+    </span>
+
+    <li ng-repeat= "file in files">{{file.name}}</li>
     <div>
       <input type="submit" class="btn btn-primary" value="Done" />
     </div>

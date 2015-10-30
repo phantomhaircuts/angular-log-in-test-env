@@ -3,9 +3,9 @@
     <p>Fill in or correct the machine's address information.</p>
   </blockquote>
   <label>Address 1</label>
-  <input type="text" ng-model="formData.location_address" name="address" placeholder="address" value="{{dataCtrl.spot.location_address}}">
+  <input type="text" ng-model="formData.location_address" name="address" placeholder="address" ng-value= "dataCtrl.spot.location_address">
   <label>Address 2</label>
-  <input type="text" ng-model="formData.location_address2" name="address" placeholder="address" value="{{dataCtrl.spot.location_address2}}">
+  <input type="text" ng-model="formData.location_address2" name="address" placeholder="address" ng-value="{{dataCtrl.spot.location_address2}}">
   <label>City</label>
   <input type="text" ng-model="formData.location_city" name="city" placeholder="city" value="{{dataCtrl.spot.location_city}}">
   <label>State</label>
