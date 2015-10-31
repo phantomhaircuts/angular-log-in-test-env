@@ -14,6 +14,7 @@
     'onboardingLogin',
     'onboardingDirectives',
     'ngAnimate',
-    'ngResource'
+    'ngResource',
+    'naif.base64'
   ]);
 })()

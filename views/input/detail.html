@@ -2,12 +2,16 @@
   <blockquote class="text-center">
     <p>Fill the fields <em>OR</em> add a picture of the corresponding plates/stickers.</p>
   </blockquote>
+  <label>Account</label>
+  <input type="text" ng-model="formData.account" name="make" placeholder="make" value="{{dataCtrl.spot.account}}">
   <label>Make</label>
-  <input type="text" ng-model="formData.location_make" name="make" placeholder="make" value="{{dataCtrl.spot.account}}">
+  <input type="text" ng-model="formData.location_make" name="make" placeholder="make" value="{{dataCtrl.spot.location_make}}">
   <label>Model</label>
   <input type="text" ng-model="formData.location_model" name="model" placeholder="model" value="{{dataCtrl.spot.location_address}}">
   <label>Telemeter Type</label>
   <input type="text" ng-model="formData.firmware" name="firmware" placeholder="firmware" value="{{dataCtrl.spot.location_address2}}">
+  <label>Route</label>
+  <input type="text" ng-model="formData.route" name="route" placeholder="route" value="{{dataCtrl.spot.route}}">
   <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.par" />
 </div>
 <!-- ADD ROUTE AND ACCOUNT -->
