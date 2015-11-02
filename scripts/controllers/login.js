@@ -327,7 +327,7 @@ angular.module('authentication', ['ngStorage'])
           // 'attachments': {'resource': {'file': filePayload, content_type:'image/png'}}
           // '[attachments][][resource]': {file: 'logo.png', content_type: 'image/png'}
         },
-        'attachement': {filePayload}
+        // 'attachement': {filePayload}
       };
       freshEnd = 'vagabondvending.freshdesk.com';
       freshReq = {
