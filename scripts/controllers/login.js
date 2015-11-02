@@ -347,6 +347,7 @@ angular.module('authentication', ['ngStorage'])
         if (response.status == 200) {
           console.log("freshdesk was Successful!")
           console.log(freshKey)
+          $state.go("/home")
         };
       });
     };
