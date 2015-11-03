@@ -3,7 +3,7 @@
     <p>Add a picture of the front of the machine to provide product placement and pricing.</p>
   </blockquote>
   <!-- <form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate> -->
-  <label class="text-center">
+  <label class="text-center"></label>
     <span class="btn btn-primary fileinput-button">
       <span class="glyphicon glyphicon-camera"></span>
       Take a Photo
@@ -14,17 +14,6 @@
         base-sixty-four-input
         multiple />
     </span>
-
-    <span class="btn btn-primary fileinput-button">
-      <span class="glyphicon glyphicon-camera"></span>
-      Take another Photo
-      <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
-      <input type="file"
-        file-input = "files"
-        onchange="angular.element(this).scope().filesChanged(this)"
-        multiple />
-    </span>
-
     <li ng-repeat= "file in files">{{file.name}}</li>
     <div>
       <input type="submit" class="btn btn-primary" value="Done" />

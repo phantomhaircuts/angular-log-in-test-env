@@ -99,7 +99,7 @@ angular.module('authentication', ['ngStorage'])
     console.log(username + " = Username");
     console.log(password + " = Password");
     console.log(xauthentication + "= XAUTHENTICATION");
-
+    // console.log($scope.loginCtrl.session.password);
     //Create the Request
     var req = {
       method: 'POST',
@@ -175,10 +175,17 @@ angular.module('authentication', ['ngStorage'])
 .controller("dataController", ['$scope', '$http', 'md5', '$location', '$state', function( $scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location, $state, $stateProvider, $urlRouterProvider, $stateParams){
   locId = $scope.id;
   locdate = new Date();
+  username = sessionStorage.username;
+  password = sessionStorage.password;
   var xauthentication = username + ":" + md5.createHash(password + locdate);
 
   $scope.filesChanged = function(elm){
     $scope.files = elm.files
+    $scope.$apply();
+  };
+
+  $scope.photosChanged = function(elm){
+    $scope.photos = elm.files
     $scope.$apply();
   };
 
@@ -240,6 +247,7 @@ angular.module('authentication', ['ngStorage'])
 
   // function to process the form
   $scope.processForm = function($state, $stateParams) {
+    photoVar = $scope.photos
     fileVar = $scope.files
     filePayload = new FormData()
     angular.forEach($scope.files, function(file){
@@ -282,9 +290,34 @@ angular.module('authentication', ['ngStorage'])
       if (response.status == 200) {
         console.log(response.url)
         console.log(photoObj.data.link);
+        imgFuncTwo()
+      };
+    });
+
+    // //SECOND IMGUR POST//=================================================
+    photoAuth = 'Client-ID f8dcff0ff1e34f2';
+    clientId = 'f8dcff0ff1e34f2';
+    var photoReq = {
+      method: 'POST',
+      url: "https://api.imgur.com/3/image",
+      data: photoVar[0],
+      // transformRequest: angular.identity,
+      headers: {
+        'Authorization': 'Client-ID f8dcff0ff1e34f2',
+      }
+    }
+  function imgFuncTwo() {
+    $http(photoReq)
+    .then(function photoCallback ( response, data ) {
+      console.log(" Second photo is being submitted" + response)
+      photoObjTwo = response.data;
+      if (response.status == 200) {
+        console.log(response.url)
+        console.log(photoObjTwo.data.link);
         freshFunc();
       };
     });
+  };
 
     //Final PUT Request ============================================
     dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
@@ -323,11 +356,8 @@ angular.module('authentication', ['ngStorage'])
           'custom_field': {'customer_id_142177': custId},
           'email': 'example@example.com',
           'subject': 'TICKET TEST',
-          'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Photo Link: " + photoObj.data.link,
-          // 'attachments': {'resource': {'file': filePayload, content_type:'image/png'}}
-          // '[attachments][][resource]': {file: 'logo.png', content_type: 'image/png'}
+          'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Product Photo Link: " + photoObj.data.link + "\n Details Photo Link: " + photoObjTwo.data.link,
         },
-        // 'attachement': {filePayload}
       };
       freshEnd = 'vagabondvending.freshdesk.com';
       freshReq = {
@@ -347,7 +377,6 @@ angular.module('authentication', ['ngStorage'])
         if (response.status == 200) {
           console.log("freshdesk was Successful!")
           console.log(freshKey)
-          $state.go("/home")
         };
       });
     };
