@@ -85,6 +85,7 @@ angular.module('authentication', ['ngStorage'])
   //   user.session.push(this.session)
   //   this.session = {}
   // };
+
   //Submit password and username
   $scope.loginCtrl.submit = function() {
     //declare variables for authentication
@@ -165,11 +166,36 @@ angular.module('authentication', ['ngStorage'])
           locData = response.data.locationsSet
           console.log(locData);
           Array.prototype.push.apply(locations, locData);
+          getTel()
         };
       });
     };
-  }
-}])
+    // GET TELEMETER TYPES //////////////////////////////////////////////////////////////////
+    function getTel(){
+      $scope.locations = [];
+      // Create GET Request Headers For Location List
+      var getTel = {
+        method: 'GET',
+        url: 'http://apitestv12.vagabondvending.com/DTG/telemetertypes',
+        // data:'json',
+        headers: {
+          'Content-type': 'text/html',
+          'Accept': 'application/json',
+          'XDATE': xdate,
+          'XAUTHENTICATION': xauthentication
+        }
+      };
+      // Make GET Request
+      $http(getTel)
+      .then(function successCallback ( response, data ) {
+        if (response.status == 200) {
+          console.log("response" + response.data)
+        };
+      });
+    };
+
+  } // END SUBMIT =======================================================
+}]) // END LOGIN CONTROLLER =============================================
 
 // START DATA CONTROLLER========================================================
 .controller("dataController", ['$scope', '$http', 'md5', '$location', '$state', function( $scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location, $state, $stateProvider, $urlRouterProvider, $stateParams){

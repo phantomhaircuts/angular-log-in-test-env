@@ -199,7 +199,7 @@ pre {
 
 /*FORM / INPUT STYLES*/
 input[type=submit] {
-	color: #fff;
+	color: #fff!important;
 	width: 100%;
 	text-align: center;
 	margin-top: 10px;
@@ -213,7 +213,7 @@ input[type=submit] {
 }
 
 form {
-	color: #fff;
+	color: #eee;
 	margin: 0 auto;
 	width: 50%;
 	height: 700px;
@@ -226,7 +226,7 @@ label {
 input {
 	width: 100%;
 	height: 2.5em;
-	color: #4E5D6C;
+	color: #4E5D6C!important;
 }
 
 .txtarea::-webkit-input-placeholder::after {
