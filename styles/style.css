@@ -247,6 +247,13 @@ input[type=text], input[type=password] {
 	text-align: center;
 }
 
+select {
+	width: 50%;
+	height: 2.6em;
+	background-color: #337AB7;
+	color: #fff;
+}
+
 /*FOOTER STYLES*/
 footer {
 	background-color: #1E1E1E;
