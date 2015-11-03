@@ -3,14 +3,14 @@
     <p>Fill in or correct the machine's address information.</p>
   </blockquote>
   <label>Address 1</label>
-  <input type="text" ng-model="formData.location_address" name="address" placeholder="address" ng-value= "dataCtrl.spot.location_address">
+  <input type="text" ng-model="formData.location_address" name="address" placeholder="address" ng-value= "dataCtrl.spot.location_address" required>
   <label>Address 2</label>
   <input type="text" ng-model="formData.location_address2" name="address" placeholder="address" ng-value="{{dataCtrl.spot.location_address2}}">
   <label>City</label>
-  <input type="text" ng-model="formData.location_city" name="city" placeholder="city" value="{{dataCtrl.spot.location_city}}">
+  <input type="text" ng-model="formData.location_city" name="city" placeholder="city" value="{{dataCtrl.spot.location_city}}" required>
   <label>State</label>
-  <input type="text" ng-model="formData.location_state" name="state" placeholder="state" value="{{dataCtrl.spot.location_state}}">
+  <input type="text" ng-model="formData.location_state" name="state" placeholder="state" value="{{dataCtrl.spot.location_state}}" required>
   <label>Zip</label>
-  <input type="text" ng-model="formData.location_zip" name="zip" placeholder="zip" value="{{dataCtrl.spot.location_zip}}">
+  <input type="text" ng-model="formData.location_zip" name="zip" placeholder="zip" value="{{dataCtrl.spot.location_zip}}" required>
   <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.detail">
 </div>

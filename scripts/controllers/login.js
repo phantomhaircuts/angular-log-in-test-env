@@ -352,7 +352,7 @@ angular.module('authentication', ['ngStorage'])
       freshKey = Base64.encode(apiKey);
       var freshData = {
         'helpdesk_ticket':{
-          'group_id': 5000252927,
+          'group_id': 5000252983,
           'custom_field': {'customer_id_142177': custId},
           'email': 'example@example.com',
           'subject': 'TICKET TEST',
