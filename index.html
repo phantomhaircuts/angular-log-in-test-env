@@ -36,12 +36,19 @@
     <div class="header">
       <h3 class="header-link">
         <a ui-sref="home">Home</a>
-        <a ui-sref="about">About</a>
+        <a class="about-link">About</a>
         <a ui-sref="logout">Logout</a>
       </h3>
     </div>
   </div>
   <div class="site-wrapper">
+
+    <div class="about-page">
+      <h1 class="ex-out" style="color:white; padding-left: 10px;">X</h1>
+      <h1>About</h1>
+      <p>This an an app, appy app app.</p>
+    </div>
+
     <!-- views will be injected here -->
     <div ui-view></div>
   </div> <!-- END SITE WRAPPER -->

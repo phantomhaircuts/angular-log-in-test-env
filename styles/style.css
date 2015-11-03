@@ -56,6 +56,18 @@ body {
 }
 
 /*BODY STYLES*/
+
+.about-page{
+    background: #c3bcb9;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    color: white;
+    z-index: 9001;
+    display: none;
+}
+
 .heading {
 	font-family: 'Vollkorn', serif;
 	font-weight: lighter;
@@ -76,6 +88,7 @@ pre {
 
 .spots {
 	border-top: 1px solid #fff;
+	padding: 2.3em;
 	margin: 0 auto;
 	min-height: 100px;
 	display: block;
@@ -207,6 +220,13 @@ input {
 }
 input[type=text], input[type=password] {
 	color: #4E5D6C;
+	height: 3em;
+}
+
+.camera {
+	margin: 0 auto;
+	width: 100%;
+	text-align: center;
 }
 
 /*FOOTER STYLES*/
