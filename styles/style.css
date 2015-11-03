@@ -97,13 +97,23 @@ pre {
 .spots a, a:visited {
 	color: white!important;
 	margin: 0;
+	min-height: 3em;
+}
+
+.locList {
+	margin-bottom: 9em;
+	display: block;
 }
 
 .spots:nth-child(even) {
-	background-color: #32A177;
+	background-color: #337AB7;
 }
 .spots:nth-child(odd) {
-	background-color: #00C479;
+	background-color: #4E5D6C;
+}
+
+.spots:nth-last-child(1) {
+	border-bottom: 1px solid #fff;
 }
 
 .h2, h2 {
