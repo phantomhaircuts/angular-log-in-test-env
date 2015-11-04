@@ -10,10 +10,13 @@
       Take a Photo
       <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
       <input type="file"
+        class="input-sm camera text-center"
+        accept="image/*"
+        capture="camera"
         file-input = "files"
         onchange="angular.element(this).scope().filesChanged(this)"
         base-sixty-four-input
-        multiple />
+         />
     </span>
     <li ng-repeat= "file in files">{{file.name}}</li>
     <div>
