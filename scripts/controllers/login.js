@@ -57,6 +57,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     url: '/products',
     templateUrl: 'views/input/products.html'
   })
+
+  .state('data.list', {
+    url: '/list',
+    templateUrl: 'views/input/list.html'
+  })
 });
 // END Router ========================================================
 
@@ -70,9 +75,6 @@ angular.module('authentication', ['ngStorage'])
 
   // session variable
   var session = this;
-
-  //ng-hide var
-  $scope.loggedIn = false;
 
   //Pass local Storage by reference to a hook under scope
   $scope.$storage = $localStorage
@@ -127,14 +129,14 @@ angular.module('authentication', ['ngStorage'])
           console.log('session stored')
           console.log( 'hello ' + sessionStorage.getItem('username'))
           $scope.show=false;
+          $scope.loggedIn = sessionStorage.username;
           getLocation()
         }();
       }
-
     }, function errorCallback(response) {
       console.log("Check your Username or Password")
       console.log( "This is response status: "+ response.status );
-      alert("Please Check your Username or Password")
+      $scope.error = "Please Check your Username or Password";
       // called asynchronously if an error occurs
       // or server returns response with an error status.
     });
@@ -366,7 +368,6 @@ angular.module('authentication', ['ngStorage'])
       if (response.status == 200) {
         console.log("Submission was Successful!!!!")
         locData = response.data.locationsSet
-        alert('submit!');
         Array.prototype.push.apply(locations, locData);
       };
     });
@@ -401,10 +402,14 @@ angular.module('authentication', ['ngStorage'])
       .then(function freshCallback ( response, data ) {
         console.log("freshdesk is being submitted")
         if (response.status == 200) {
+          $scope.submitSuccess = "Your Location has been updated!";
           console.log("freshdesk was Successful!")
           console.log(freshKey)
         };
-      });
+      }, function errorFresh(response) {
+        console.log("error")
+      }
+    );
     };
     //=================================================
     //DB POST

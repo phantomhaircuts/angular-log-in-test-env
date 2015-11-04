@@ -5,8 +5,12 @@ body {
 	/*font-size: 15px;*/
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	min-height: 900px;
+	/*min-height: 1000px;*/
 	/*font-weight: lighter;*/
+}
+
+.site-wrapper {
+	position: relative;
 }
 
 .text-center {
@@ -21,7 +25,7 @@ body {
 	font-size: 15px;
 	text-transform: uppercase;
 	letter-spacing: 2px;
-	position: fixed;
+	/*position: fixed;*/
 	/*background-color: #737A36;*/
 	transition:background 0.5s ease ;
 	-webkit-transition:background 0.5s ease ;
@@ -207,7 +211,7 @@ input[type=submit] {
 }
 
 .loginPage form {
-	margin-top: 100px;
+	/*margin-top: 100px;*/
 	height: 200px;
 	width: 40%;
 }
@@ -216,9 +220,10 @@ form {
 	color: #eee;
 	margin: 0 auto;
 	width: 50%;
-	height: 700px;
+	height: 685px;
 	background-color: #4E5D6C;
-	padding: 10px;
+	padding: 5px;
+	overflow: scroll!important;
 }
 label {
 	width: 100%;
@@ -254,6 +259,10 @@ select {
 	color: #fff;
 }
 
+.submitSuccess {
+	color: green;
+}
+
 /*FOOTER STYLES*/
 footer {
 	background-color: #1E1E1E;
@@ -264,5 +273,6 @@ footer {
 	position: fixed;
 	display: block;
 	border-top: 1px solid #fff;
+	margin-top: 1px;
 
 }

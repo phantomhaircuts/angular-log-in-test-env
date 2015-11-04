@@ -37,9 +37,9 @@
   <div class="header-wrapper text-center">
     <div class="header">
       <h3 class="header-link">
-        <a ui-sref="home">Home</a>
+        <a ui-sref="home"><span class="glyphicon glyphicon-list-alt"></span></a>
         <a class="about-link">About</a>
-        <a ui-sref="logout">Logout</a>
+        <span ng-controller='loginController as loginCtrl'><a ng-show="loggedIn" ui-sref="logout">Logout</a></span>
       </h3>
     </div>
   </div>
@@ -52,6 +52,7 @@
     </div>
 
     <!-- views will be injected here -->
+     <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
     <div ui-view></div>
   </div> <!-- END SITE WRAPPER -->
   <footer>
