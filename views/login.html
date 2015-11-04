@@ -1,6 +1,6 @@
 
 <div ng-controller='loginController as loginCtrl'>
-  <div ng-show="loggedIn"><h3>Hello {{loggedIn}} <button class="logout">Logout</button></h3></div>
+  <div ng-show="loggedIn"><h3 class="welcome">Welcome, {{loggedIn}} <button class="logout">Logout</button></h3></div>
   <!-- Insert List HTML below this line if it causes problems -->
   <div class="locList">
     <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">

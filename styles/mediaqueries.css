@@ -15,11 +15,25 @@
 @media screen and (max-width: 900px) { /*SMALLER TABLET/PORTRAIT TABLET ADJUSTMENTS*/
   body {
     background-color: #4E5D6C!important;
+    margin: 0!important
+    padding: 0;
+  }
+
+
+
+  blockquote {
+    font-size: 14px!important;
+
+  }
+
+  #data-form {
+    padding: 9px;
   }
 
   form, #status-buttons, .loginPage form  {
     width: 100%;
   }
+
   h2 {
     font-size: 20px!important;
     margin: 0!important
@@ -27,16 +41,16 @@
   .header-wrapper {
     margin: 0;
   }
+  footer {
+    background-color: #4E5D6C;
+    display: none!important;
+  }
 }
 
 @media screen and (max-width: 500px) { /*TYPICAL MOBILE ADJUSTMENTS*/
   .heading {
     display: none;
   }
-  footer {
-    background-color: #4E5D6C;
-  }
-
 
   form, #status-buttons, .loginPage form {
     width: 100%;
@@ -51,9 +65,9 @@
     margin: 0;
   }
 
-  .header-link, .header-link a, .header-link a:visited {
+  /*.header-link, .header-link a, .header-link a:visited {
     margin: 10px;
-  }
+  }*/
 
 
 }

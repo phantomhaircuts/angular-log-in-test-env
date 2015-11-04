@@ -33,7 +33,7 @@ body {
 	left: 0;
 	color: #031a3c;
 	position: relative;
-	margin-bottom: 30px;
+	/*margin-bottom: 30px;*/
 }
 
 .header {
@@ -86,6 +86,10 @@ body {
 	font-size: 2em;
 }
 
+.welcome {
+	font-size: 14px !important;
+}
+
 pre {
 	width: 50%;
 }
@@ -125,6 +129,10 @@ pre {
 }
 
 /* numbered buttons */
+#dataTitle {
+	margin-bottom: 10px!important;
+}
+
 #status-buttons {
 	background-color: #4E5D6C;
 	margin: 0 auto;
@@ -149,7 +157,7 @@ pre {
 	background:#080808;
 	display:block;
 	height:30px;
-	margin:0 auto 10px;
+	margin:0 auto 12px;
 	padding-top:5px;
 	width:30px;
 	border-radius:50%;
