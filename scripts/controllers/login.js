@@ -11,7 +11,7 @@ var app = angular.module("onboardingApp", [
 // UI ROUTER CODE =============================================
 app.config(function($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('home/login');
 
   $stateProvider
 
@@ -21,11 +21,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'views/login.html'
   })
 
-  // .state('locationState', {
-  //   url: '/locations',
-  //   templateUrl: 'views/locations.html'
-  //   // controller: 'loginController'
-  // })
+  .state('about', {
+    url: '/about',
+    templateUrl: 'views/about.html'
+    // controller: 'loginController'
+  })
 
   .state('data', {
     url: '/data/:id',
@@ -35,8 +35,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
       $scope.id = $stateParams.id;
     }
   })
+  // NESTED VIEWS AND STATES FOR LOGIN ================================
+  // $urlRouterProvider.otherwise('/login')
+  .state('home.login', {
+    url: '/login',
+    templateUrl: 'views/login/loginform.html'
+  })
+  .state('login.locations', {
+    url: '/locations',
+    templateUrl: 'views/login/location.html'
+  })
 
-  // NESTED VIEWS AND STATES =================================
+  // NESTED VIEWS AND STATES FOR DATA =================================
   // $urlRouterProvider.otherwise('/address')
   .state('data.address', {
     url: '/address',

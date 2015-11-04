@@ -7,23 +7,5 @@
       <a ui-sref='data.address({ id: place.id })'><h2>{{place.location_name}}</h2></a>
     </div>
   </div>
-
-  <!-- This is the Login Form for the Onboarding Tool -->
-  <div class="loginPage" ng-hide='loggedIn'>
-    <div ng-show="error" class="alert alert-danger">{{error}}</div>
-    <h1 class="heading">Welcome to the Vagabond Onboarding Tool</h1>
-    <h4  class= "direction" class="text-center">Login using your Vagabond account:</h4>
-    <form name="loginForm" ng-submit="loginCtrl.submit(session)" novalidate>
-      <label>Username</label>
-      <input type="text" name="username" ng-model="loginCtrl.session.username" required><br>
-      <label>Password</label>
-      <input type="password" name="password" ng-model="loginCtrl.session.password" required>
-      <input type="submit" class="btn btn-primary" value="Login" />
-    </form>
-
-
-
-    <!-- Previews -->
-    <!-- <pre>Form Preview = {{ loginCtrl.session | json}}</pre> -->
-  </div>
+    <div id="login-views" ui-view></div>
 </div>

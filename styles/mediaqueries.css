@@ -16,13 +16,14 @@
   body {
     background-color: #4E5D6C!important;
     margin: 0!important
-    padding: 0;
   }
 
 
 
   blockquote {
-    font-size: 14px!important;
+    font-size: 13px!important;
+    margin: 0 !important;
+    padding: 8px !important;
 
   }
 
