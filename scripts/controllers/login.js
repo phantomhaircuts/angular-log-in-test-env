@@ -178,34 +178,9 @@ angular.module('authentication', ['ngStorage'])
           locData = response.data.locationsSet
           console.log(locData);
           Array.prototype.push.apply(locations, locData);
-          getTel()
         };
       });
     };
-    // GET TELEMETER TYPES //////////////////////////////////////////////////////////////////
-    function getTel(){
-      $scope.locations = [];
-      // Create GET Request Headers For Location List
-      var getTel = {
-        method: 'GET',
-        url: 'http://apitestv12.vagabondvending.com/DTG/telemetertypes',
-        // data:'json',
-        headers: {
-          'Content-type': 'text/html',
-          'Accept': 'application/json',
-          'XDATE': xdate,
-          'XAUTHENTICATION': xauthentication
-        }
-      };
-      // Make GET Request
-      $http(getTel)
-      .then(function successCallback ( response, data ) {
-        if (response.status == 200) {
-          console.log("response" + response.data)
-        };
-      });
-    };
-
   } // END SUBMIT =======================================================
 }]) // END LOGIN CONTROLLER =============================================
 
@@ -213,6 +188,8 @@ angular.module('authentication', ['ngStorage'])
 .controller("dataController", ['$scope', '$http', 'md5', '$location', '$state', function( $scope, $http, md5, $localStorage, $sessionStorage, ngAnimate, $location, $state, $stateProvider, $urlRouterProvider, $stateParams){
   locId = $scope.id;
   locdate = new Date();
+  teltypes = [];
+  this.telemeters = teltypes;
   username = sessionStorage.username;
   password = sessionStorage.password;
   var xauthentication = username + ":" + md5.createHash(password + locdate);
@@ -224,6 +201,11 @@ angular.module('authentication', ['ngStorage'])
 
   $scope.photosChanged = function(elm){
     $scope.photos = elm.files
+    $scope.$apply();
+  };
+
+  $scope.picsChanged = function(elm){
+    $scope.pics = elm.files
     $scope.$apply();
   };
 
@@ -252,6 +234,30 @@ angular.module('authentication', ['ngStorage'])
       getUser();
     };
   });
+  // GET TELEMETER TYPES //////////////////////////////////////////////////////////////////
+getTel();
+  function getTel(){
+    // Create GET Request Headers For Location List
+    var getTel = {
+      method: 'GET',
+      url: 'http://apitestv12.vagabondvending.com/DTG/telemetertypes',
+      // data:'json',
+      headers: {
+        'Content-type': 'text/html',
+        'Accept': 'application/json',
+        'XDATE': locdate,
+        'XAUTHENTICATION': xauthentication
+      }
+    };
+    // Make GET Telemeters
+    $http(getTel)
+    .then(function successCallback ( response, data ) {
+      if (response.status == 200) {
+        telResp = response.data.telemeters;
+        Array.prototype.push.apply(teltypes, telResp);
+      };
+    });
+  };
 
   // GET User Information
   function getUser(){
@@ -279,6 +285,7 @@ angular.module('authentication', ['ngStorage'])
       };
     })
   };
+
   // we will store all of our form data in this object
   // $scope.formData = {};
   $scope.locations = $scope.locations;
@@ -286,6 +293,7 @@ angular.module('authentication', ['ngStorage'])
   // function to process the form
   $scope.processForm = function($state, $stateParams) {
     photoVar = $scope.photos
+    picVar = $scope.pics
     fileVar = $scope.files
     filePayload = new FormData()
     angular.forEach($scope.files, function(file){
@@ -308,8 +316,18 @@ angular.module('authentication', ['ngStorage'])
     locFirmware = $scope.formData.firmware;
     locPar = $scope.formData.pars;
     custId = userId.customer;
+    telSelection = $scope.formData.location_telemeter;
+    telsn = $scope.formData.location_telemeter_serial;
 
-    //IMGUR POST//=================================================
+    //PRODUCT IMGUR POST//=================================================
+imgFuncOne();
+
+function imgFuncOne(){
+  if (typeof fileVar === 'undefined'){
+    $scope.submitError = "You need to include a photo of the products.";
+  }
+
+  else if (typeof fileVar  != 'undefined') {
     photoAuth = 'Client-ID f8dcff0ff1e34f2';
     clientId = 'f8dcff0ff1e34f2';
     var photoReq = {
@@ -327,12 +345,52 @@ angular.module('authentication', ['ngStorage'])
       photoObj = response.data;
       if (response.status == 200) {
         console.log(response.url)
-        console.log(photoObj.data.link);
+        freshPhotoOne = photoObj.data.link;
         imgFuncTwo()
       };
     });
+  };
+};
 
-    // //SECOND IMGUR POST//=================================================
+//Second Optional Product IMGUR POST//=================================================
+function imgFuncThree() {
+if (typeof picVar === 'undefined'){
+  freshPhotoThree = "no photo submitted"
+  console.log("no 3 photo submitted");
+  freshFunc()
+}
+else if (typeof picVar  != 'undefined') {
+photoAuth = 'Client-ID f8dcff0ff1e34f2';
+clientId = 'f8dcff0ff1e34f2';
+var photoReq = {
+  method: 'POST',
+  url: "https://api.imgur.com/3/image",
+  data: picVar[0],
+  // transformRequest: angular.identity,
+  headers: {
+    'Authorization': 'Client-ID f8dcff0ff1e34f2',
+  }
+}
+  $http(photoReq)
+  .then(function photoCallback ( response, data ) {
+    console.log(" third photo is being submitted" + response)
+    photoObjThree = response.data;
+    if (response.status == 200) {
+      freshPhotoThree = photoObjThree.data.link;
+      freshFunc();
+    };
+  });
+};
+};
+
+    //TELEMETER IMGUR POST//=================================================
+function imgFuncTwo() {
+    if (typeof photoVar === 'undefined'){
+      freshPhotoTwo = "no photo submitted"
+      console.log("no 2 photo submitted");
+      imgFuncThree();
+    }
+    else if (typeof photoVar  != 'undefined') {
     photoAuth = 'Client-ID f8dcff0ff1e34f2';
     clientId = 'f8dcff0ff1e34f2';
     var photoReq = {
@@ -344,19 +402,18 @@ angular.module('authentication', ['ngStorage'])
         'Authorization': 'Client-ID f8dcff0ff1e34f2',
       }
     }
-  function imgFuncTwo() {
-    $http(photoReq)
-    .then(function photoCallback ( response, data ) {
-      console.log(" Second photo is being submitted" + response)
-      photoObjTwo = response.data;
-      if (response.status == 200) {
-        console.log(response.url)
-        console.log(photoObjTwo.data.link);
-        freshFunc();
-      };
-    });
-  };
-
+      $http(photoReq)
+      .then(function photoCallback ( response, data ) {
+        console.log(" Second photo is being submitted" + response)
+        photoObjTwo = response.data;
+        if (response.status == 200) {
+          console.log(response.url)
+          freshPhotoTwo = photoObjTwo.data.link;
+          imgFuncThree();
+        };
+      });
+    };
+};
     //Final PUT Request ============================================
     dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
     var dataReq = {
@@ -393,7 +450,7 @@ angular.module('authentication', ['ngStorage'])
           'custom_field': {'customer_id_142177': custId},
           'email': 'example@example.com',
           'subject': 'TICKET TEST',
-          'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Product Photo Link: " + photoObj.data.link + "\n Details Photo Link: " + photoObjTwo.data.link,
+          'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nTelemeter: " + telSelection + "\nTelemeter Serial Number: " + telsn +"\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Product Photo Link(s): \n" + freshPhotoOne + "\n" + freshPhotoThree + "\n\n Details Photo Link: \n" + freshPhotoTwo,
         },
       };
       freshEnd = 'vagabondvending.freshdesk.com';
@@ -413,6 +470,7 @@ angular.module('authentication', ['ngStorage'])
         console.log("freshdesk is being submitted")
         if (response.status == 200) {
           $scope.submitSuccess = "Your Location has been updated!";
+          $(".submitError").css('display','none');
           console.log("freshdesk was Successful!")
           console.log(freshKey)
         };
@@ -420,50 +478,50 @@ angular.module('authentication', ['ngStorage'])
         console.log("error")
       }
     );
-    };
-    //=================================================
-    //DB POST
-    // photoAuth = 'Client-ID f8dcff0ff1e34f2';
-    // clientId = 'f8dcff0ff1e34f2';
-    // var photoReq = {
-    //   method: 'POST',
-    //   url: "https://content.dropboxapi.com/2-beta-2/files/upload",
-    //   data: filePayload,
-    //   // transformRequest: angular.identity,
-    //   headers: {
-    //      'Authorization': 'Bearer zuEjcWgrypQAAAAAAAABPSEvc0s2kb9sJdsvhNW3EuaSwQS-RHfTax24MyW6Xkp2',
-    //      'Content-Type': 'application/octet-stream',
-    //      'Dropbox-API-Arg': {"path":"/ErikAnderson/WebImages"},
-    //      'User-Agent': 'api-explorer-client'
-    //
-    //   }
-    // }
-    // $http(photoReq)
-    // .then(function photoCallback ( response, data ) {
-    //   console.log("photo is being submitted")
-    //   if (response.status == 200) {
-    //     console.log(response)
-    //   };
-    // });
-    // //=================================================
-    // var photoReq = {
-    //   method: 'POST',
-    //   url: "https://" + freshEnd + "/helpdesk/tickets.json",
-    //   data: filePayload,
-    //   // transformRequest: angular.identity,
-    //   headers: {
-    //     transformRequest:angular.identity,
-    //     'Content-Type': undefined,
-    //   }
-    // }
-    // $http(photoReq)
-    // .then(function photoCallback ( response, data ) {
-    //   console.log("photo is being submitted")
-    //   if (response.status == 200) {
-    //     console.log(response)
-    //   };
-    // });
+  };
+  //=================================================
+  //DB POST
+  // photoAuth = 'Client-ID f8dcff0ff1e34f2';
+  // clientId = 'f8dcff0ff1e34f2';
+  // var photoReq = {
+  //   method: 'POST',
+  //   url: "https://content.dropboxapi.com/2-beta-2/files/upload",
+  //   data: filePayload,
+  //   // transformRequest: angular.identity,
+  //   headers: {
+  //      'Authorization': 'Bearer zuEjcWgrypQAAAAAAAABPSEvc0s2kb9sJdsvhNW3EuaSwQS-RHfTax24MyW6Xkp2',
+  //      'Content-Type': 'application/octet-stream',
+  //      'Dropbox-API-Arg': {"path":"/ErikAnderson/WebImages"},
+  //      'User-Agent': 'api-explorer-client'
+  //
+  //   }
+  // }
+  // $http(photoReq)
+  // .then(function photoCallback ( response, data ) {
+  //   console.log("photo is being submitted")
+  //   if (response.status == 200) {
+  //     console.log(response)
+  //   };
+  // });
+  // //=================================================
+  // var photoReq = {
+  //   method: 'POST',
+  //   url: "https://" + freshEnd + "/helpdesk/tickets.json",
+  //   data: filePayload,
+  //   // transformRequest: angular.identity,
+  //   headers: {
+  //     transformRequest:angular.identity,
+  //     'Content-Type': undefined,
+  //   }
+  // }
+  // $http(photoReq)
+  // .then(function photoCallback ( response, data ) {
+  //   console.log("photo is being submitted")
+  //   if (response.status == 200) {
+  //     console.log(response)
+  //   };
+  // });
 
 
-  }; //END PROCESS FORM
+}; //END PROCESS FORM
 }]); // END DATA CONTROLLER

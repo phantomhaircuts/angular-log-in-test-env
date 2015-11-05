@@ -2,24 +2,37 @@
   <blockquote class="text-center">
     <p>Add a picture of the front of the machine to provide product placement and pricing.</p>
   </blockquote>
+  <div ng-show="submitError" class="submitError"><h3>{{submitError}}</h3></div>
   <div ng-show="submitSuccess" class="submitSuccess"><h3>{{submitSuccess}}</h3></div>
   <!-- <form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate> -->
   <label class="text-center"></label>
-    <span class="camera btn btn-primary fileinput-button">
-      <span class="glyphicon glyphicon-camera"></span>
-      Take a Photo
-      <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
-      <input type="file"
-        class="input-sm camera text-center"
-        accept="image/*"
-        capture="camera"
-        file-input = "files"
-        onchange="angular.element(this).scope().filesChanged(this)"
-        base-sixty-four-input
-         />
-    </span>
-    <li ng-repeat= "file in files">{{file.name}}</li>
-    <div>
-      <input type="submit" class="btn btn-primary" value="Done" />
-    </div>
+  <span class="camera btn btn-primary fileinput-button">
+    <span class="glyphicon glyphicon-camera"></span>
+    Take a Photo *
+    <input type="file"
+    class="input-sm camera text-center"
+    accept="image/*"
+    capture="camera"
+    file-input = "files"
+    onchange="angular.element(this).scope().filesChanged(this)"
+    base-sixty-four-input
+    />
+  </span>
+  <li ng-repeat= "file in files">{{file.name}}</li>
+
+  <span class="camera btn btn-primary fileinput-button">
+    <span class="glyphicon glyphicon-camera"></span>
+    Take a second Photo (optional)
+    <input type="file"
+    class="input-sm camera text-center"
+    accept="image/*"
+    capture="camera"
+    onchange="angular.element(this).scope().picsChanged(this)"
+    base-sixty-four-input
+    />
+  </span>
+  <li ng-repeat= "pic in pics">{{pic.name}}</li>
+  <div>
+    <input type="submit" class="btn btn-primary" value="Done" />
   </div>
+</div>

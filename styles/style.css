@@ -62,14 +62,14 @@ body {
 /*BODY STYLES*/
 
 .about-page{
-    background: #c3bcb9;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    color: white;
-    z-index: 9001;
-    display: none;
+	background: #c3bcb9;
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	margin: 0 auto;
+	color: white;
+	z-index: 9001;
+	display: none;
 }
 
 .heading {
@@ -116,6 +116,7 @@ pre {
 .spots:nth-child(even) {
 	background-color: #337AB7;
 }
+
 .spots:nth-child(odd) {
 	background-color: #4E5D6C;
 }
@@ -169,45 +170,6 @@ pre {
 	box-shadow: 0 0 0 rgba(204, 169, 44, 0.4);
 	animation: pulse 2s infinite;
 }
-@-webkit-keyframes pulse {
-	0% {
-		-webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-	}
-	70% {
-		-webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-	}
-	100% {
-		-webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-	}
-}
-
-@-webkit-keyframes pulse {
-	0% {
-		-webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.4);
-	}
-	70% {
-		-webkit-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
-	}
-	100% {
-		-webkit-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
-	}
-}
-
-@keyframes pulse {
-	0% {
-		-moz-box-shadow: 0 0 0 0 rgba(221, 105, 40, 0.4);
-		box-shadow: 0 0 0 0 rgba(221, 105, 40, 0.4);
-	}
-	70% {
-		-moz-box-shadow: 0 0 0 10px rgba(221, 105, 40, 0);
-		box-shadow: 0 0 0 30px rgba(221, 105, 40, 0);
-	}
-	100% {
-		-moz-box-shadow: 0 0 0 0 rgba(221, 105, 40, 0);
-		box-shadow: 0 0 0 0 rgba(221, 105, 40, 0);
-	}
-}
-
 
 /*FORM / INPUT STYLES*/
 input[type=submit] {
@@ -236,6 +198,7 @@ form {
 label {
 	width: 100%;
 }
+
 input {
 	width: 100%;
 	height: 2.5em;
@@ -243,8 +206,8 @@ input {
 }
 
 .txtarea::-webkit-input-placeholder::after {
-    display:block;
-    content:"8,10,12,8\A 8,10,8,8,8,10\A 6,6,6,6";
+	display:block;
+	content:"8,10,12,8\A 8,10,8,8,8,10\A 6,6,6,6";
 }
 
 }
@@ -256,6 +219,7 @@ input[type=text], input[type=password] {
 
 .camera {
 	margin: 0 auto;
+	margin-top: 10px;
 	width: 100%;
 	text-align: center;
 }
@@ -268,7 +232,15 @@ select {
 }
 
 .submitSuccess {
-	color: green;
+	background-color: #1CB878;
+	padding: 10px;
+	text-align: center;
+	animation: successpulse 2s infinite;
+}
+
+.submitError {
+	background:#F24330;
+	animation: errorpulse 2s infinite;
 }
 
 /*FOOTER STYLES*/
@@ -282,5 +254,4 @@ footer {
 	display: block;
 	border-top: 1px solid #fff;
 	margin-top: 1px;
-
 }

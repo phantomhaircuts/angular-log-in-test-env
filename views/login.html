@@ -1,11 +1,14 @@
 
 <div ng-controller='loginController as loginCtrl'>
-  <div ng-show="loggedIn"><h3 class="welcome">Welcome, {{loggedIn}} <button class="logout">Logout</button></h3></div>
-  <!-- Insert List HTML below this line if it causes problems -->
-  <div class="locList">
-    <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">
-      <a ui-sref='data.address({ id: place.id })'><h2>{{place.location_name}}</h2></a>
-    </div>
+  <div ng-show="loggedIn"><h3 class="welcome">Welcome, {{loggedIn}}
+    <!-- <button class="logout">Logout</button> -->
+  </h3>
+</div>
+<!-- Insert List HTML below this line if it causes problems -->
+<div class="locList">
+  <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">
+    <a ui-sref='data.address({ id: place.id })'><h2>{{place.location_name}}</h2></a>
   </div>
-    <div id="login-views" ui-view></div>
+</div>
+<div id="login-views" ui-view></div>
 </div>

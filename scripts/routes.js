@@ -2,23 +2,23 @@
   angular.module('onboardingRouter', ['ui.router'])
   .config(function($stateProvider, $urlRouterProvider){
 
-      $stateProvider
+    $stateProvider
 
-      $urlRouterProvider.otherwise('/home')
+    $urlRouterProvider.otherwise('/home')
 
 
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/login.html'
-        // controller: 'loginController'
-      })
-      .state('locationState', {
-        url: '/locations',
-        templateUrl: 'views/locations.html'
-      })
-      .state('data', {
-        url: '/data',
-        templateUrl: 'views/data.html'
-      })
-    });
+    .state('home', {
+      url: '/home',
+      templateUrl: 'views/login.html'
+      // controller: 'loginController'
+    })
+    .state('locationState', {
+      url: '/locations',
+      templateUrl: 'views/locations.html'
+    })
+    .state('data', {
+      url: '/data',
+      templateUrl: 'views/data.html'
+    })
+  });
 })();

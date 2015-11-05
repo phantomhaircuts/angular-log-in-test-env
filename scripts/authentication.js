@@ -17,20 +17,20 @@ var options = {
   headers: {
     'Content-type': 'text/plain',
     'Accept': 'application/json',
-      XDATE: 'Mon Jan 19 2015 23:45:30 GMT',
-      XAUTHENTICATION: xauthentication
+    XDATE: 'Mon Jan 19 2015 23:45:30 GMT',
+    XAUTHENTICATION: xauthentication
   },
   dataType:'json'
   body : sales_input
 };
 
 function callback(error, response, body) {
-    console.log("error - ", error);
-    console.log("resp - ", response);
-    console.log("body - ", body);
-    if (!error && response.statusCode == 200) {
-        var info = JSON.parse(body);
-    }
+  console.log("error - ", error);
+  console.log("resp - ", response);
+  console.log("body - ", body);
+  if (!error && response.statusCode == 200) {
+    var info = JSON.parse(body);
+  }
 }
 
 request.post(options, callback);
