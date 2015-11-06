@@ -2,7 +2,7 @@
 <html lang="en" ng-app='onboardingApp'>
 <head>
   <meta charset="UTF-8">
-  <title>Onboarding Tool</title>
+  <title>Location Setup Tool</title>
 
   <!-- External Scripts -->
   <script src="bower_components/angular/angular.min.js"></script>
@@ -44,13 +44,6 @@
     </div>
   </div>
   <div class="site-wrapper">
-
-    <div class="about-page">
-      <h1 class="ex-out" style="color:white; padding-left: 10px;">X</h1>
-      <h1>About</h1>
-      <p>This an an app, appy app app.</p>
-    </div>
-
     <!-- views will be injected here -->
      <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
     <div ui-view></div>

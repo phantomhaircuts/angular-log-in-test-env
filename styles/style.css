@@ -235,12 +235,13 @@ select {
 	background-color: #1CB878;
 	padding: 10px;
 	text-align: center;
-	animation: successpulse 2s infinite;
+	animation: successpulse 2s;
 }
 
 .submitError {
 	background:#F24330;
-	animation: errorpulse 2s infinite;
+	padding: 10px;
+	animation: errorpulse 2s;
 }
 
 /*FOOTER STYLES*/

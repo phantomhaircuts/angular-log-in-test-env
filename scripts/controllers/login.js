@@ -116,7 +116,7 @@ angular.module('authentication', ['ngStorage'])
     //Create the Request
     var req = {
       method: 'POST',
-      url: 'http://apitestv12.vagabondvending.com/DTG/users/verifylogin',
+      url: 'http://apiv1-1.dtgvending.com/DTG/users/verifylogin',
       headers: {
         'Content-type': 'text/plain',
         'Accept': 'application/json',
@@ -157,7 +157,7 @@ angular.module('authentication', ['ngStorage'])
       // Create GET Request Headers For Location List
       var getList = {
         method: 'GET',
-        url: 'http://apitestv12.vagabondvending.com/DTG/locations',
+        url: 'http://apiv1-1.dtgvending.com/DTG/locations',
         // data:'json',
         headers: {
           'Content-type': 'text/html',
@@ -212,7 +212,7 @@ angular.module('authentication', ['ngStorage'])
   // HEADERS FOR INDIVIDUAL LOCATION
   var getLoc = {
     method: 'GET',
-    url: 'http://apitestv12.vagabondvending.com/DTG/locations/' + locId,
+    url: 'http://apiv1-1.dtgvending.com/DTG/locations/' + locId,
     // data:'json',
     headers: {
       'Content-type': 'text/html',
@@ -240,7 +240,7 @@ getTel();
     // Create GET Request Headers For Location List
     var getTel = {
       method: 'GET',
-      url: 'http://apitestv12.vagabondvending.com/DTG/telemetertypes',
+      url: 'http://apiv1-1.dtgvending.com/DTG/telemetertypes',
       // data:'json',
       headers: {
         'Content-type': 'text/html',
@@ -324,7 +324,7 @@ imgFuncOne();
 
 function imgFuncOne(){
   if (typeof fileVar === 'undefined'){
-    $scope.submitError = "You need to include a photo of the products.";
+    $scope.submitError = "Please include a clear Photo of product and selection names.";
   }
 
   else if (typeof fileVar  != 'undefined') {
@@ -418,7 +418,7 @@ function imgFuncTwo() {
     dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
     var dataReq = {
       method: 'PUT',
-      url: 'http://apitestv12.vagabondvending.com/DTG/locations/'+ locId,
+      url: 'http://apiv1-1.dtgvending.com/DTG/locations/'+ locId,
       data: pay + load,
       headers: {
         'Content-type': undefined,
