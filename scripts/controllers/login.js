@@ -231,6 +231,8 @@ angular.module('authentication', ['ngStorage'])
       placeId = response.data.locations
       this.spot = placeId;
       CurrentSpot = this.spot
+      $scope.locName = spot.location_name;
+      console.log($scope.locName)
       getUser();
     };
   });
