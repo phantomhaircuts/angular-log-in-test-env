@@ -6,9 +6,10 @@
 </div>
 <!-- Insert List HTML below this line if it causes problems -->
 <div class="locList">
-  <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">
+  <div ng-repeat="place in loginCtrl.places | filter : {location_setup: '0'} : true track by place.id" class="spots">
     <a ui-sref='data.address({ id: place.id })'><h2>{{place.location_name}}</h2></a>
   </div>
 </div>
 <div id="login-views" ui-view></div>
 </div>
+<!-- | filter : {{location_setup: '0'}} : true" ng-if="loginCtrl.places.location_setup == '0' -->

@@ -1,5 +1,5 @@
 <div ng-controller="loginController as loginCtrl" class="locList">
-  <div ng-repeat="place in loginCtrl.places track by place.id" class="spots">
+  <div ng-repeat="place in loginCtrl.places | filter : {{location_setup: '0'}} : true" ng-if="loginCtrl.places.location_setup == '0' "class="spots">
     <a ui-sref='data.address({ id: place.id })'><h2>{{place.location_name}}</h2></a>
   </div>
 </div>

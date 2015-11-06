@@ -235,7 +235,7 @@ angular.module('authentication', ['ngStorage'])
     };
   });
   // GET TELEMETER TYPES //////////////////////////////////////////////////////////////////
-getTel();
+  getTel();
   function getTel(){
     // Create GET Request Headers For Location List
     var getTel = {
@@ -261,7 +261,6 @@ getTel();
 
   // GET User Information
   function getUser(){
-
     var getUser = {
       method: 'GET',
       url: 'http://apiv1-1.dtgvending.com/DTG/users/appinit',
@@ -292,6 +291,7 @@ getTel();
 
   // function to process the form
   $scope.processForm = function($state, $stateParams) {
+    $scope.formData.location_setup = 1;
     photoVar = $scope.photos
     picVar = $scope.pics
     fileVar = $scope.files
@@ -305,6 +305,7 @@ getTel();
     load = angular.toJson($scope.formData);
 
     //These are the Variables for Freshdesk Post Description
+    locSetup = $scope.formData.location_setup
     locName = spot.location_name;
     locAddress = $scope.formData.location_address;
     locAddressTwo = $scope.formData.location_address2;
@@ -320,100 +321,100 @@ getTel();
     telsn = $scope.formData.location_telemeter_serial;
 
     //PRODUCT IMGUR POST//=================================================
-imgFuncOne();
+    imgFuncOne();
 
-function imgFuncOne(){
-  if (typeof fileVar === 'undefined'){
-    $scope.submitError = "Please include a clear Photo of product and selection names.";
-  }
-
-  else if (typeof fileVar  != 'undefined') {
-    photoAuth = 'Client-ID f8dcff0ff1e34f2';
-    clientId = 'f8dcff0ff1e34f2';
-    var photoReq = {
-      method: 'POST',
-      url: "https://api.imgur.com/3/image",
-      data: fileVar[0],
-      // transformRequest: angular.identity,
-      headers: {
-        'Authorization': 'Client-ID f8dcff0ff1e34f2',
+    function imgFuncOne(){
+      if (typeof fileVar === 'undefined'){
+        $scope.submitError = "Please include a clear Photo of product and selection names.";
       }
-    }
-    $http(photoReq)
-    .then(function photoCallback ( response, data ) {
-      console.log("photo is being submitted" + response)
-      photoObj = response.data;
-      if (response.status == 200) {
-        console.log(response.url)
-        freshPhotoOne = photoObj.data.link;
-        imgFuncTwo()
-      };
-    });
-  };
-};
 
-//Second Optional Product IMGUR POST//=================================================
-function imgFuncThree() {
-if (typeof picVar === 'undefined'){
-  freshPhotoThree = "no photo submitted"
-  console.log("no 3 photo submitted");
-  freshFunc()
-}
-else if (typeof picVar  != 'undefined') {
-photoAuth = 'Client-ID f8dcff0ff1e34f2';
-clientId = 'f8dcff0ff1e34f2';
-var photoReq = {
-  method: 'POST',
-  url: "https://api.imgur.com/3/image",
-  data: picVar[0],
-  // transformRequest: angular.identity,
-  headers: {
-    'Authorization': 'Client-ID f8dcff0ff1e34f2',
-  }
-}
-  $http(photoReq)
-  .then(function photoCallback ( response, data ) {
-    console.log(" third photo is being submitted" + response)
-    photoObjThree = response.data;
-    if (response.status == 200) {
-      freshPhotoThree = photoObjThree.data.link;
-      freshFunc();
+      else if (typeof fileVar  != 'undefined') {
+        photoAuth = 'Client-ID f8dcff0ff1e34f2';
+        clientId = 'f8dcff0ff1e34f2';
+        var photoReq = {
+          method: 'POST',
+          url: "https://api.imgur.com/3/image",
+          data: fileVar[0],
+          // transformRequest: angular.identity,
+          headers: {
+            'Authorization': 'Client-ID f8dcff0ff1e34f2',
+          }
+        }
+        $http(photoReq)
+        .then(function photoCallback ( response, data ) {
+          console.log("photo is being submitted" + response)
+          photoObj = response.data;
+          if (response.status == 200) {
+            console.log(response.url)
+            freshPhotoOne = photoObj.data.link;
+            imgFuncTwo()
+          };
+        });
+      };
     };
-  });
-};
-};
+
+    //Second Optional Product IMGUR POST//=================================================
+    function imgFuncThree() {
+      if (typeof picVar === 'undefined'){
+        freshPhotoThree = "no photo submitted"
+        console.log("no 3 photo submitted");
+        freshFunc()
+      }
+      else if (typeof picVar  != 'undefined') {
+        photoAuth = 'Client-ID f8dcff0ff1e34f2';
+        clientId = 'f8dcff0ff1e34f2';
+        var photoReq = {
+          method: 'POST',
+          url: "https://api.imgur.com/3/image",
+          data: picVar[0],
+          // transformRequest: angular.identity,
+          headers: {
+            'Authorization': 'Client-ID f8dcff0ff1e34f2',
+          }
+        }
+        $http(photoReq)
+        .then(function photoCallback ( response, data ) {
+          console.log(" third photo is being submitted" + response)
+          photoObjThree = response.data;
+          if (response.status == 200) {
+            freshPhotoThree = photoObjThree.data.link;
+            freshFunc();
+          };
+        });
+      };
+    };
 
     //TELEMETER IMGUR POST//=================================================
-function imgFuncTwo() {
-    if (typeof photoVar === 'undefined'){
-      freshPhotoTwo = "no photo submitted"
-      console.log("no 2 photo submitted");
-      imgFuncThree();
-    }
-    else if (typeof photoVar  != 'undefined') {
-    photoAuth = 'Client-ID f8dcff0ff1e34f2';
-    clientId = 'f8dcff0ff1e34f2';
-    var photoReq = {
-      method: 'POST',
-      url: "https://api.imgur.com/3/image",
-      data: photoVar[0],
-      // transformRequest: angular.identity,
-      headers: {
-        'Authorization': 'Client-ID f8dcff0ff1e34f2',
+    function imgFuncTwo() {
+      if (typeof photoVar === 'undefined'){
+        freshPhotoTwo = "no photo submitted"
+        console.log("no 2 photo submitted");
+        imgFuncThree();
       }
-    }
-      $http(photoReq)
-      .then(function photoCallback ( response, data ) {
-        console.log(" Second photo is being submitted" + response)
-        photoObjTwo = response.data;
-        if (response.status == 200) {
-          console.log(response.url)
-          freshPhotoTwo = photoObjTwo.data.link;
-          imgFuncThree();
-        };
-      });
+      else if (typeof photoVar  != 'undefined') {
+        photoAuth = 'Client-ID f8dcff0ff1e34f2';
+        clientId = 'f8dcff0ff1e34f2';
+        var photoReq = {
+          method: 'POST',
+          url: "https://api.imgur.com/3/image",
+          data: photoVar[0],
+          // transformRequest: angular.identity,
+          headers: {
+            'Authorization': 'Client-ID f8dcff0ff1e34f2',
+          }
+        }
+        $http(photoReq)
+        .then(function photoCallback ( response, data ) {
+          console.log(" Second photo is being submitted" + response)
+          photoObjTwo = response.data;
+          if (response.status == 200) {
+            console.log(response.url)
+            freshPhotoTwo = photoObjTwo.data.link;
+            imgFuncThree();
+          };
+        });
+      };
     };
-};
     //Final PUT Request ============================================
     dataAuth = username + ":" + md5.createHash(password + dataDate + pay + load);
     var dataReq = {
@@ -436,6 +437,7 @@ function imgFuncTwo() {
         console.log("Submission was Successful!!!!")
         locData = response.data.locationsSet
         Array.prototype.push.apply(locations, locData);
+        console.log ($scope.formData.Location_setup);
       };
     });
 
@@ -448,8 +450,8 @@ function imgFuncTwo() {
         'helpdesk_ticket':{
           'group_id': 5000252983,
           'custom_field': {'customer_id_142177': custId},
-          'email': 'example@example.com',
-          'subject': 'TICKET TEST',
+          'email': username,
+          'subject': "Location #" + locId + " " + locName + " has been updated via the Setup Tool",
           'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nTelemeter: " + telSelection + "\nTelemeter Serial Number: " + telsn +"\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Product Photo Link(s): \n" + freshPhotoOne + "\n" + freshPhotoThree + "\n\n Details Photo Link: \n" + freshPhotoTwo,
         },
       };
@@ -479,49 +481,5 @@ function imgFuncTwo() {
       }
     );
   };
-  //=================================================
-  //DB POST
-  // photoAuth = 'Client-ID f8dcff0ff1e34f2';
-  // clientId = 'f8dcff0ff1e34f2';
-  // var photoReq = {
-  //   method: 'POST',
-  //   url: "https://content.dropboxapi.com/2-beta-2/files/upload",
-  //   data: filePayload,
-  //   // transformRequest: angular.identity,
-  //   headers: {
-  //      'Authorization': 'Bearer zuEjcWgrypQAAAAAAAABPSEvc0s2kb9sJdsvhNW3EuaSwQS-RHfTax24MyW6Xkp2',
-  //      'Content-Type': 'application/octet-stream',
-  //      'Dropbox-API-Arg': {"path":"/ErikAnderson/WebImages"},
-  //      'User-Agent': 'api-explorer-client'
-  //
-  //   }
-  // }
-  // $http(photoReq)
-  // .then(function photoCallback ( response, data ) {
-  //   console.log("photo is being submitted")
-  //   if (response.status == 200) {
-  //     console.log(response)
-  //   };
-  // });
-  // //=================================================
-  // var photoReq = {
-  //   method: 'POST',
-  //   url: "https://" + freshEnd + "/helpdesk/tickets.json",
-  //   data: filePayload,
-  //   // transformRequest: angular.identity,
-  //   headers: {
-  //     transformRequest:angular.identity,
-  //     'Content-Type': undefined,
-  //   }
-  // }
-  // $http(photoReq)
-  // .then(function photoCallback ( response, data ) {
-  //   console.log("photo is being submitted")
-  //   if (response.status == 200) {
-  //     console.log(response)
-  //   };
-  // });
-
-
 }; //END PROCESS FORM
 }]); // END DATA CONTROLLER
