@@ -132,6 +132,7 @@ angular.module('authentication', ['ngStorage'])
       console.dir(response);
       //Create Session and Store XAUTHENTICATION
       if (response.status == 200) {
+        $(".sk-circle").css('display','block');
         $scope.loggedIn = true;
         $scope.saveData = function(){
           sessionStorage.setItem('username', username);
@@ -174,6 +175,7 @@ angular.module('authentication', ['ngStorage'])
         console.dir(response);
         //Create Session and Store XAUTHENTICATION
         if (response.status == 200) {
+          $(".sk-circle").css('display','none');
           console.log("it's alive!")
           locData = response.data.locationsSet
           console.log(locData);
@@ -331,6 +333,7 @@ angular.module('authentication', ['ngStorage'])
       }
 
       else if (typeof fileVar  != 'undefined') {
+        $(".sk-circle").css('display','block');
         photoAuth = 'Client-ID f8dcff0ff1e34f2';
         clientId = 'f8dcff0ff1e34f2';
         var photoReq = {
@@ -474,6 +477,7 @@ angular.module('authentication', ['ngStorage'])
         console.log("freshdesk is being submitted")
         if (response.status == 200) {
           $scope.submitSuccess = "Your Location has been updated!";
+          $(".sk-circle").css('display','none');
           $(".submitError").css('display','none');
           console.log("freshdesk was Successful!")
           console.log(freshKey)
