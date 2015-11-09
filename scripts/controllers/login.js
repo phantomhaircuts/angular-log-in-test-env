@@ -176,11 +176,12 @@ angular.module('authentication', ['ngStorage'])
         //Create Session and Store XAUTHENTICATION
         if (response.status == 200) {
           $(".sk-circle").css('display','none');
-          console.log("it's alive!")
           locData = response.data.locationsSet
           console.log(locData);
           Array.prototype.push.apply(locations, locData);
         };
+      },function errorCallback(response) {
+        $scope.error = "There has been an error retrieving your Locations, please login again.";
       });
     };
   } // END SUBMIT =======================================================
@@ -465,7 +466,6 @@ angular.module('authentication', ['ngStorage'])
         method: 'POST',
         url: "https://" + freshEnd + "/helpdesk/tickets.json",
         data: freshData,
-        // transformRequest: angular.identity,
         headers: {
           'Accept': '*/*',
           'Content-Type': 'application/json',
@@ -484,6 +484,8 @@ angular.module('authentication', ['ngStorage'])
         };
       }, function errorFresh(response) {
         console.log("error")
+        $(".sk-circle").css('display','none');
+        $scope.submitError = "There was an error creating a ticket, Please try again";
       }
     );
   };

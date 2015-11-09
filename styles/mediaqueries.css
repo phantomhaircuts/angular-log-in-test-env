@@ -14,7 +14,7 @@
 
 @media screen and (max-width: 900px) { /*SMALLER TABLET/PORTRAIT TABLET ADJUSTMENTS*/
   body {
-    background-color: #4E5D6C!important;
+    /*background-color: #4E5D6C!important;*/
     margin: 0!important
   }
 

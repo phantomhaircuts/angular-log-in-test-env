@@ -1,0 +1,23 @@
+html {
+  background-color: $brand-color-secondary;
+  box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  display: none;
+  margin: $align-center;
+  max-width: $container-max-width;
+  padding: $gutter-extra-small;
+
+  @include respond-to('medium'){
+    padding: $gutter-small;
+  }
+}
