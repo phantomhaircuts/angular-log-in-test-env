@@ -456,7 +456,7 @@ angular.module('authentication', ['ngStorage'])
         'helpdesk_ticket':{
           'group_id': 5000252983,
           'custom_field': {'customer_id_142177': custId},
-          'email': username,
+          'email': 'test@test.com',
           'subject': "Location #" + locId + " " + locName + " has been updated via the Setup Tool",
           'description': "Location #" + locId + " " + locName + " has been updated via the Setup Tool by " + username + " \n \n Address:\n" + locAddress + "\n" + locAddressTwo + "\n" + locCity + ", " + locState + ", " + locZip + "\nMake: " + locMake + "\nModel: " + locModel + "\nTelemeter: " + telSelection + "\nTelemeter Serial Number: " + telsn +"\nFirmware: " + locFirmware + "\n\n Par Values: \n" + locPar + "\n\n Product Photo Link(s): \n" + freshPhotoOne + "\n" + freshPhotoThree + "\n\n Details Photo Link: \n" + freshPhotoTwo,
         },
