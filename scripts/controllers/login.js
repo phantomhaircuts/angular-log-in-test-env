@@ -107,12 +107,6 @@ angular.module('authentication', ['ngStorage'])
     var auth = md5.createHash(password + xdate);
     xauthentication = username + ":" + auth;
 
-    //console log the globals needed for authentication
-    console.log(xdate + " = xdate");
-    console.log(username + " = Username");
-    console.log(password + " = Password");
-    console.log(xauthentication + "= XAUTHENTICATION");
-    // console.log($scope.loginCtrl.session.password);
     //Create the Request
     var req = {
       method: 'POST',
@@ -336,7 +330,7 @@ angular.module('authentication', ['ngStorage'])
       }
 
       else if (typeof fileVar  != 'undefined') {
-        $scope.progressDetails = "submitting image one";
+        $scope.progressDetails = "submitting image";
         $(".sk-circle").css('display','block');
         photoAuth = 'Client-ID f8dcff0ff1e34f2';
         clientId = 'f8dcff0ff1e34f2';
@@ -354,7 +348,7 @@ angular.module('authentication', ['ngStorage'])
           console.log("photo is being submitted" + response)
           photoObj = response.data;
           if (response.status == 200) {
-            $scope.progressDetails = "photo submitted"
+            $scope.progressDetails = "image submitted"
             console.log(response.url)
             freshPhotoOne = photoObj.data.link;
             imgFuncTwo()

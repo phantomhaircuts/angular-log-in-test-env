@@ -19,13 +19,13 @@
   <label>Route</label>
   <input type="text" ng-model="formData.route" name="route" placeholder="route" value="{{dataCtrl.spot.route}}">
   <input type="hidden" ng-model="formData.location_setup" name="location_setup">
-  <form>
+  <!-- <form>
     <label class="text-center"></label>
     <span class="camera btn btn-primary fileinput-button">
       <span class="glyphicon glyphicon-camera"></span>
-      Take a Photo
+      Take a Photo -->
       <!-- <input ng-model="setupctrl.formData.mmfphoto" type="file" accept="image/*" capture="camera"> -->
-      <input type="file"
+      <!-- <input type="file"
       class="input-sm camera text-center"
       accept="image/*"
       capture="camera"
@@ -33,7 +33,7 @@
       onchange="angular.element(this).scope().photosChanged(this)"
       base-sixty-four-input
       />
-    </span>
+    </span> -->
     <li ng-repeat= "photo in photos">{{photo.name}}</li>
   </form>
   <input type="submit" class="btn btn-primary" value="Next" ui-sref="data.par" />
