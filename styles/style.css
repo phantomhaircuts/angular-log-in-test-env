@@ -247,16 +247,19 @@ input {
 	content:"8,10,12,8\A 8,10,8,8,8,10\A 6,6,6,6";
 }
 
-.camera {
-	background-color: #353811!important;
-}
-
 input[type=text], input[type=password] {
 	color: #4E5D6C;
 	height: 3em;
 }
 
+/*input[type=file] {
+	background-color: #353811!important;
+	position:relative!important;
+	overflow:hidden!important;
+}*/
+
 .camera {
+	background-color: #353811!important;
 	margin: 0 auto;
 	margin-top: 10px;
 	width: 100%;
@@ -281,7 +284,19 @@ button:focus {
 	text-align: center;
 	animation: successpulse 3s;
 	margin: 5px;
+}
 
+.ok {
+	background-color: #1CB878;
+	padding: 10px;
+	margin: 5px, auto;
+	text-align: center;
+	cursor: pointer;
+}
+
+.progressDetails {
+	color: #DC6465;
+	text-align: center;
 }
 
 .submitError {

@@ -3,26 +3,27 @@
     <p>Add a picture of the front of the machine to provide product placement and pricing.</p>
   </blockquote>
 
+  <div ng-show="progressDetails" class="progressDetails"><h4>{{progressDetails}}</h4></div>
   <div class="sk-circle">
-  <div class="sk-circle1 sk-child"></div>
-  <div class="sk-circle2 sk-child"></div>
-  <div class="sk-circle3 sk-child"></div>
-  <div class="sk-circle4 sk-child"></div>
-  <div class="sk-circle5 sk-child"></div>
-  <div class="sk-circle6 sk-child"></div>
-  <div class="sk-circle7 sk-child"></div>
-  <div class="sk-circle8 sk-child"></div>
-  <div class="sk-circle9 sk-child"></div>
-  <div class="sk-circle10 sk-child"></div>
-  <div class="sk-circle11 sk-child"></div>
-  <div class="sk-circle12 sk-child"></div>
-</div>
-
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
   <div ng-show="submitError" class="submitError"><h4>{{submitError}}</h4></div>
   <div ng-show="submitSuccess" class="submitSuccess"><h4>{{submitSuccess}}</h4></div>
   <!-- <form ng-controller='dataController as dataCtrl' name="editForm" ng-submit="dataCtrl.submit(data)" novalidate> -->
+  <div class="ok" ng-show='submitSuccess' ui-sref="home">OK <span class="glyphicon glyphicon-ok"></span>  </div>
   <label class="text-center"></label>
-  <span class="camera btn btn-primary fileinput-button">
+  <span  ng-hide='submitSuccess'class="camera btn btn-primary fileinput-button">
     <span class="glyphicon glyphicon-camera"></span>
     Take a Photo *
     <input type="file"
@@ -34,9 +35,9 @@
     base-sixty-four-input
     />
   </span>
-  <li ng-repeat= "file in files">{{file.name}}</li>
+  <li ng-hide='submitSuccess' ng-repeat= "file in files">{{file.name}}</li>
 
-  <span class="camera btn btn-primary fileinput-button">
+  <span ng-hide='submitSuccess' class="camera btn btn-primary fileinput-button">
     <span class="glyphicon glyphicon-camera"></span>
     Take a second Photo (optional)
     <input type="file"
@@ -47,9 +48,9 @@
     base-sixty-four-input
     />
   </span>
-  <li ng-repeat= "pic in pics">{{pic.name}}</li>
+  <li ng-hide='submitSuccess' ng-repeat= "pic in pics">{{pic.name}}</li>
   <div>
-    <input type="submit" class="btn btn-primary" value="Done" />
+    <input ng-hide='submitSuccess' type="submit" class="btn btn-primary" value="Done"/>
   </div>
   <img id="outputImage" />
 </div>
