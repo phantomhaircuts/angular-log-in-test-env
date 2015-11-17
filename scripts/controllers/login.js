@@ -87,7 +87,7 @@ angular.module('authentication', ['ngStorage'])
   var session = this;
 
   //Pass local Storage by reference to a hook under scope
-  $scope.$storage = $localStorage
+  $scope.$storage = $localStorage;
 
   // This code will push the inner html and clear the form
   // ng-submit
@@ -133,14 +133,14 @@ angular.module('authentication', ['ngStorage'])
       //Create Session and Store XAUTHENTICATION
       if (response.status == 200) {
         $(".sk-circle").css('display','block');
-        $scope.loggedIn = true;
         $scope.saveData = function(){
           sessionStorage.setItem('username', username);
           sessionStorage.setItem('password', password);
           console.log('session stored')
           console.log( 'hello ' + sessionStorage.getItem('username'))
-          $scope.show=false;
-          $scope.loggedIn = sessionStorage.username;
+          $scope.show= false;
+          username = sessionStorage.username
+          $scope.loggedIn = username;
           getLocation()
         }();
       }
