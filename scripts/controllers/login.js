@@ -173,6 +173,9 @@ angular.module('authentication', ['ngStorage'])
           locData = response.data.locationsSet
           console.log(locData);
           Array.prototype.push.apply(locations, locData);
+          locations.sort(function(a,b){
+            return a.location_name - b.location_name;
+          })
         };
       },function errorCallback(response) {
         $scope.error = "There has been an error retrieving your Locations, please login again.";
